@@ -12,7 +12,9 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentOnBoardBinding
 import com.seymen.seymentravel.utils.Constants.ONBOARDING_SP_KEY
 import com.seymen.seymentravel.utils.SharedPreferencesUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnBoardFragment : Fragment() {
 
     private var _binding : FragmentOnBoardBinding? = null

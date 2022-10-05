@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,13 +10,39 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/layout_background"
         tools:context=".presentation.trip.TripFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:text="@string/trip_plan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/title_style" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_trip"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Trip" />
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabTextColor="#C2C5D6"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@color/pink"
+            app:tabIndicatorColor="@color/pink"
+            app:tabIconTint="@color/tab_icon_color"
+            app:tabInlineLabel="true"
+            app:tabTextAppearance="@style/TabTextAppearanceTrip"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pagetrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_trip"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

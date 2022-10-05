@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
@@ -36,25 +35,81 @@
         android:id="@+id/homeFragment"
         android:name="com.seymen.seymentravel.presentation.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.seymen.seymentravel.presentation.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="detailID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/guideFragment"
         android:name="com.seymen.seymentravel.presentation.guide.GuideFragment"
         android:label="GuideFragment"
-        tools:layout="@layout/fragment_guide"/>
+        tools:layout="@layout/fragment_guide">
+        <action
+            android:id="@+id/action_guideFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tripFragment"
         android:name="com.seymen.seymentravel.presentation.trip.TripFragment"
         android:label="TripFragment"
-        tools:layout="@layout/fragment_trip"/>
+        tools:layout="@layout/fragment_trip">
+        <action
+            android:id="@+id/action_tripFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.seymen.seymentravel.presentation.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="com.seymen.seymentravel.presentation.home.AllFragment"
+        android:label="AllFragment"
+        tools:layout="@layout/fragment_all">
+        <action
+            android:id="@+id/action_allFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flightsFragment"
+        android:name="com.seymen.seymentravel.presentation.home.FlightsFragment"
+        android:label="fragment_flights"
+        tools:layout="@layout/fragment_flights" >
+        <action
+            android:id="@+id/action_flightsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hotelsFragment"
+        android:name="com.seymen.seymentravel.presentation.home.HotelsFragment"
+        android:label="fragment_hotels"
+        tools:layout="@layout/fragment_hotels" >
+        <action
+            android:id="@+id/action_hotelsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transportationsFragment"
+        android:name="com.seymen.seymentravel.presentation.home.TransportationsFragment"
+        android:label="fragment_transportations"
+        tools:layout="@layout/fragment_transportations" >
+        <action
+            android:id="@+id/action_transportationsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

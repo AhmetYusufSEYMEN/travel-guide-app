@@ -11,32 +11,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/layout_background"
         tools:context=".presentation.onboard.OnBoardFragment">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/source_sans_pro_bold"
             android:text="@string/seymen_travel"
-            android:textColor="@color/text_color"
+            android:textColor="@color/common_text_color"
             android:textSize="@dimen/_26ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:fontFamily="@font/source_sans_pro_bold"
             android:text="@string/txt_custom_string"
-            android:textSize="@dimen/_36ssp"
+            android:textSize="@dimen/_33ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,6 +58,8 @@
             android:layout_width="wrap_content"
             android:drawableEnd="@drawable/onboarding_airplane"
             android:text="@string/let_s_go"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

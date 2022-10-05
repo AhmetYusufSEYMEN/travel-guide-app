@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="let_s_go">Let\'s Go!</string>
+    <string name="flights">Uçuşlar</string>
+    <string name="hotels">Oteller</string>
+    <string name="cars">Arabalar</string>
+    <string name="taxi">Taksiler</string>
+    <string name="where_s_your_next_destination">Bir sonraki hedefiniz neresi?</string>
+    <string name="txt_custom_string"><font color='#292C3D'><br>Yolculuğa Çıkmaya </br></font> <font color='#ff4760'>\tHazır mısın?</font>
+    </string>
+    <string name="all">Hepsi</string>
+    <string name="transportation">Ulaşım</string>
+    <string name="deals">FIRSATLAR</string>
+    <string name="search">Search</string>
+    <string name="trip_plan">Trip Plan</string>
+    <string name="where_next">Where next?</string>
+    <string name="trips">Geziler</string>
+    <string name="bookmark">Kaydedilenler</string>
+    <string name="guide">Guide</string>
+    <string name="positive_button_ok">Tamam</string>
+    <string name="error">Hata</string>
+</resources>

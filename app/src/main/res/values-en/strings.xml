@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="let_s_go">Let\'s Go!</string>
+    <string name="flights">Flights</string>
+    <string name="hotels">Hotels</string>
+    <string name="cars">Cars</string>
+    <string name="taxi">Taxi</string>
+    <string name="where_s_your_next_destination">Where’s your next destination?</string>
+    <string name="txt_custom_string"><font color='#292C3D'><br>Are you ready to</br></font> <font color='#ff4760'>\tTravel?</font>
+    </string>
+    <string name="all">All</string>
+    <string name="transportation">Transportation</string>
+    <string name="deals">DEALS</string>
+    <string name="search">Search</string>
+    <string name="trip_plan">Trip Plan</string>
+    <string name="where_next">Where next?</string>
+    <string name="trips">Trips</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="guide">Guide</string>
+    <string name="positive_button_ok">Ok</string>
+    <string name="error">Error</string>
+</resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,13 +10,136 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/layout_background"
         tools:context=".presentation.home.HomeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_300sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_img" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_140sdp"
+            android:layout_marginEnd="@dimen/_100sdp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@string/where_s_your_next_destination"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_24ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/Guideline1"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/Guideline2"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/Guideline3"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/Guideline4"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageView3"
+            android:drawableTop="@drawable/banner_flights"
+            android:text="@string/flights"
+            style="@style/banner_style"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Guideline1"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageView4"
+            android:drawableTop="@drawable/banner_hotels"
+            android:text="@string/hotels"
+            style="@style/banner_style"
+            app:layout_constraintStart_toStartOf="@id/Guideline1"
+            app:layout_constraintEnd_toStartOf="@+id/Guideline2"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageView5"
+            style="@style/banner_style"
+            android:drawableTop="@drawable/banner_cars"
+            android:text="@string/cars"
+            app:layout_constraintStart_toStartOf="@id/Guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/Guideline3"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageView6"
+            style="@style/banner_style"
+            android:drawableTop="@drawable/banner_taxi"
+            android:text="@string/taxi"
+            app:layout_constraintStart_toStartOf="@id/Guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@string/deals"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Home" />
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabTextColor="#C2C5D6"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@color/pink"
+            app:tabIndicatorColor="@color/pink"
+            app:tabTextAppearance="@style/TabTextAppearanceHome"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_home"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

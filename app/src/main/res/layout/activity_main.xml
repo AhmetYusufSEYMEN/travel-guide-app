@@ -13,14 +13,10 @@
         tools:context=".MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView2"
+            android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,17 +24,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:background="@drawable/bnb_rounder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_items" />
+       <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:id="@+id/bottomNavView"
+           android:layout_width="0dp"
+           android:layout_height="@dimen/_53sdp"
+           android:padding="15dp"
+           app:menu="@menu/bottom_nav"
+           android:background="@drawable/bnv_rounder"
+           app:itemBackground="@drawable/bnv_item_background"
+           android:layout_marginStart="@dimen/_16sdp"
+           android:layout_marginEnd="@dimen/_16sdp"
+           android:layout_marginBottom="@dimen/_16sdp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
