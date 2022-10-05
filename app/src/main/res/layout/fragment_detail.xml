@@ -86,5 +86,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est vel odio elementum 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="@dimen/_275sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:background="@color/detail_transparent"
+            android:padding="15dp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

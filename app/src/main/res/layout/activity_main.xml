@@ -27,8 +27,8 @@
        <com.google.android.material.bottomnavigation.BottomNavigationView
            android:id="@+id/bottomNavView"
            android:layout_width="0dp"
-           android:layout_height="@dimen/_53sdp"
-           android:padding="15dp"
+           android:layout_height="@dimen/_50sdp"
+           android:padding="10dp"
            app:menu="@menu/bottom_nav"
            android:background="@drawable/bnv_rounder"
            app:itemBackground="@drawable/bnv_item_background"

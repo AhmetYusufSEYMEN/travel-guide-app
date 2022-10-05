@@ -6,7 +6,6 @@ interface ITravelInfoRepository {
 
     suspend fun getTravelInfo(): List<TravelModelItem>
     suspend fun getTravelInfoDetailsById(detailId: String): List<TravelModelItem>
-    suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem): List<TravelModelItem>
-
+    suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id:String): TravelModelItem
 
 }

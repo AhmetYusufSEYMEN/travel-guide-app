@@ -32,8 +32,13 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.flightRcyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        setupObservers()
 
+    }
+
+    private fun setupObservers() {
+
+        binding.flightRcyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         allViewModel.getDealsInfo()
 
         allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
@@ -53,6 +58,13 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
     override fun onListItemClickListener(clickedId: String) {
         openDetailFragment(clickedId)
     }
+
+    override fun onItemBookmarkClickListener(position: Int) {
+        TODO("Not yet implemented") // KENDİME NOT:
+                                            // BUNLARI YOK ETMEK İÇİN BOOKMARK I GERÇEKTEN YAPMAYA GEÇTİĞİNDE:
+                                            // BOOKMARK OLAN SAYFALARA ÖZGÜ CLİCK LİSTENER AÇARSIN BURADAKİNDEN BKMRK İNTRFCSİNDEN BU KISMI SİLERSİN
+    }
+
     private fun openDetailFragment(clickedId:String) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(clickedId)
         findNavController().navigate(action)

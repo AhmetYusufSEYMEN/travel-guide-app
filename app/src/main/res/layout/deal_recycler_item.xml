@@ -7,14 +7,19 @@
     <variable
         name="dealRecyclerBinding"
         type="com.seymen.seymentravel.domain.model.TravelModelItem" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:clickable="true"
+            android:focusable="true"
             android:id="@+id/imgvHomeRecyclerview"
             android:layout_width="@dimen/_190sdp"
             android:layout_height="@dimen/_110sdp"
@@ -27,7 +32,9 @@
             app:shapeAppearanceOverlay="@style/roundedImageViewItem" />
 
         <ImageButton
-            android:id="@+id/backButton"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/imgBtnAddBookmark"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_4sdp"

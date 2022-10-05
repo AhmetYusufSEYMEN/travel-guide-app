@@ -30,10 +30,16 @@ class SearchFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         NavBarHelper.navBarIsVisible(requireActivity())
+
+        /* geri tıklama için yaptım ama olmadı sanırsam
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
           Navigation.findNavController(view).popBackStack()
         }
+
+         */
+
     }
 
     override fun onDestroy() {

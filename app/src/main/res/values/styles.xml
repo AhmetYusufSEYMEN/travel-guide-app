@@ -24,7 +24,7 @@
 
     <style name="TabTextAppearanceHome" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
-        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
         <item name="fontFamily">@font/source_sans_pro_semibold</item>
     </style>
     <style name="TabTextAppearanceTrip" parent="TextAppearance.Design.Tab">

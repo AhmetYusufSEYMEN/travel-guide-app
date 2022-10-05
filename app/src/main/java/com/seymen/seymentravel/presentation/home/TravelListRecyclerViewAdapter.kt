@@ -2,6 +2,7 @@ package com.seymen.seymentravel.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.seymen.seymentravel.BR
@@ -17,19 +18,22 @@ class TravelListRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.deal_recycler_item,
-                parent,
-                false
-            )
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.deal_recycler_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(travelArrayList[position])
-        holder.binding.root.setOnClickListener {
+        holder.binding.imgvHomeRecyclerview.setOnClickListener {
             iOnListItemClickListener.onListItemClickListener(travelArrayList[position].id)
+        }
+
+        holder.binding.imgBtnAddBookmark.setOnClickListener {
+            iOnListItemClickListener.onItemBookmarkClickListener(position)
+            when(travelArrayList[position].isBookmark){
+                true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
+                false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
+            }
         }
     }
 
@@ -41,15 +45,4 @@ class TravelListRecyclerViewAdapter(
             binding.executePendingBindings()
         }
     }
-
-   /* fun setData(travelArrayList: List<TravelModelItem>){
-        this.travelArrayList = travelArrayList
-        notifyDataSetChanged()
-    }*/
-
 }
-
-//val recyclerClicked = TravelModel()
-//imgModel.url,imgModel.height,imgModel.isHeroImage,imgModel.altText,imgModel.width
-// binding.root.setOnClickListener { onItemClickHandler(recyclerClicked) }
-// binding.setVariable(BR.homeRecyclerBinding, imgModel)

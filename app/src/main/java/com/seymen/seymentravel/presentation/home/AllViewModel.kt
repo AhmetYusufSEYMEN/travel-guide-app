@@ -1,7 +1,10 @@
 package com.seymen.seymentravel.presentation.home
 
+import android.util.Log
+import android.util.MutableBoolean
 import androidx.lifecycle.*
 import com.seymen.seymentravel.domain.model.TravelModelItem
+import com.seymen.seymentravel.domain.repository.ITravelInfoRepository
 import com.seymen.seymentravel.domain.usecase.TravelInfoUseCase
 import com.seymen.seymentravel.utils.Resource
 import com.seymen.seymentravel.utils.SingleLiveEvent
@@ -11,13 +14,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllViewModel @Inject constructor(
-    private val dealsUseCase : TravelInfoUseCase
+    private val dealsUseCase : TravelInfoUseCase,
+    private val iTravelInfoRepository: ITravelInfoRepository
 ) : ViewModel() {
+
     //cached
     private val _travelInfo =MutableLiveData<List<TravelModelItem>>()
+
     //public
     val travelInfo : MutableLiveData<List<TravelModelItem>> = _travelInfo
-
+    val bookmarkState = MutableLiveData<Boolean>()
     val loadingState = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
@@ -31,6 +37,7 @@ class AllViewModel @Inject constructor(
                     is Resource.Success -> {
                         loadingState.value = false
                         _travelInfo.value = result.data!!
+                        bookmarkState.value  = result.data[0].isBookmark
                     }
                     is Resource.Error -> {
                         loadingState.value = false
@@ -41,72 +48,9 @@ class AllViewModel @Inject constructor(
         }
     }
 
-    /*//cached
-    private val _travelInfo = MutableLiveData<Resource<TravelModel>>()
-    //public
-    val travelInfo : LiveData<Resource<TravelModel>> get() =  _travelInfo*/
-
-    /*
-    fun getAllInfo() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = travelInfoRepositoryImpl.getTravelInfo()))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+    fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
+        viewModelScope.launch {
+            iTravelInfoRepository.updateTravelInfo(isBookmarkPost,isBookmarkPost.id)
         }
-    }*/
-
-
-  /*  fun getTravelInfo() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = travelInfoUseCase.invoke()))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
-    }*/
-
-  //do login
-  /*fun doLogin(travelModel: TravelModel) = viewModelScope.launch {
-          try {
-              _travelInfo.value = travelInfoUseCase.getTravelInfo()
-          }
-          catch (exception: Exception){
-
-          }
-      }*/
-
-   /* private fun getCoins() {
-        travelInfoUseCase().onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                   // _travelInfo = InfoState(infos = result.data ?: emptyList())
-                    emit(InfoState(infos =result.data))
-                }
-                is Resource.Error -> {
-                    //_travelInfo = InfoState(error = result.message ?: "An unexpected error occured")
-                }
-                is Resource.Loading -> {
-                    //_travelInfo = InfoState(isLoading = true)
-                }
-            }
-        }.launchIn(viewModelScope)
-    }*/
-
-    /*fun getTravelInfoo() : LiveData<TravelModel> {
-            travelInfoUseCase.apply {
-                getTravelInfo()
-                return travelInfo
-            }
-        }
-
-    fun getTravelInfo() = liveData(Dispatchers.IO) {
-
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = travelInfoUseCase.getTravelInfo()))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-        }
-    }*/
+    }
 }

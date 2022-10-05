@@ -35,13 +35,17 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         mainActivity = requireActivity() as MainActivity
         mainActivity.bottomNavigationView.visibility = View.GONE
+
         travelDetail = args.detailID
         Log.v("TAGG",travelDetail)
+
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
     }
 
 

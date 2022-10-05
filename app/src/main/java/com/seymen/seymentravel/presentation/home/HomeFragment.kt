@@ -1,13 +1,14 @@
 package com.seymen.seymentravel.presentation.home
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.core.content.ContextCompat
+import androidx.browser.customtabs.CustomTabsIntent
 import com.google.android.material.tabs.TabLayoutMediator
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentHomeBinding
@@ -32,32 +33,27 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         NavBarHelper.navBarIsVisible(requireActivity())
         setViewPager()
-        //setupObservers()
+        setupListeners()
 
     }
 
-   /* private fun setupObservers() {
-        homeViewModel.getTravelInfo().observe(requireActivity()) {
-            it?.let { resource ->
-                when (resource.status) {
-                    Resource.Status.SUCCESS -> {
-                        binding.recyclerMars.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.GONE
-                        resource.data?.let { informations -> retrieveList(informations) }
-                    }
-                    Resource.Status.ERROR -> {
-                        binding.recyclerMars.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                    Resource.Status.LOADING -> {
-                        binding.recyclerMars.visibility = View.VISIBLE
-                        binding.recyclerMars.visibility = View.GONE
-                    }
-                }
+    private fun setupListeners() {
+        binding.apply {
+            btnBannerflights.setOnClickListener {
+                openChromeTab(requireContext(), "https://www.youtube.com/watch?v=1DMAOBco7Mc")
+            }
+            btnBannerhotels.setOnClickListener {
+                openChromeTab(requireContext(), "https://www.youtube.com/watch?v=wi-UD2n6Fbs")
+            }
+            btnBannerCars.setOnClickListener {
+                openChromeTab(requireContext(), "https://www.youtube.com/watch?v=kEtlNKro7Bo")
+            }
+            btnBannerTaxi.setOnClickListener {
+                openChromeTab(requireContext(), "https://www.youtube.com/watch?v=7TxUbHa3x28")
             }
         }
-    }*/
+    }
+
 
     private fun setViewPager() {
 
@@ -73,6 +69,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun openChromeTab(context: Context, urlD:String){
+        val builder = CustomTabsIntent.Builder()
+        builder.setStartAnimations(context, R.anim.slide_in, R.anim.slide_out);
+        builder.setExitAnimations(context, R.anim.fade_in, R.anim.fade_out);
+
+        builder.setToolbarColor(ContextCompat.getColor(context,R.color.pink))
+        builder.addDefaultShareMenuItem()
+        builder.setShowTitle(true)
+        builder.enableUrlBarHiding()
+
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(context, Uri.parse(urlD))
+
+    }
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

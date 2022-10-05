@@ -15,8 +15,8 @@ class ITravelInfoRepositoryImpl @Inject constructor(private val apiService: ApiS
         return apiService.getTravelDetailsById(detailId)
     }
 
-    override suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem): List<TravelModelItem> {
-        return apiService.updateTravelInfo(isBookmarkPost)
+    override suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id:String): TravelModelItem {
+        return apiService.updateTravelInfo(isBookmarkPost, id)
     }
 
 }
