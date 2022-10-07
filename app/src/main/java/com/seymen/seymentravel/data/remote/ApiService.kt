@@ -1,5 +1,6 @@
 package com.seymen.seymentravel.data.remote
 
+import com.seymen.seymentravel.domain.model.GuideModelItem
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import retrofit2.http.*
 
@@ -13,5 +14,8 @@ interface ApiService {
 
     @PUT("seymenapi/allList/{id}")
     suspend fun updateTravelInfo(@Body isBookmarkPost: TravelModelItem,@Path("id") id:String): TravelModelItem
+
+    @GET("seymenapi/guideCategories")
+    suspend fun getGuideInfo(): List<GuideModelItem>
 
 }

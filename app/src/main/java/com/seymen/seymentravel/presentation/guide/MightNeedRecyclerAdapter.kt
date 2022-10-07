@@ -1,4 +1,4 @@
-package com.seymen.seymentravel.presentation.search
+package com.seymen.seymentravel.presentation.guide
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,19 +6,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.seymen.seymentravel.BR
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.SearchDestinationRecyclerItemBinding
+import com.seymen.seymentravel.databinding.MightNeedItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class TopDestinationRecyclerViewAdapter(
+class MightNeedRecyclerAdapter(
     private var travelInfoList: List<TravelModelItem>,
-    private val iOnListItemClickListener: IOnItemClickListener
-) : RecyclerView.Adapter<TopDestinationRecyclerViewAdapter.ViewHolder>() {
+    private val iOnGuideItemClickListener: IOnGuideItemClickListener
+) : RecyclerView.Adapter<MightNeedRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.search_destination_recycler_item,
+                R.layout.might_need_item,
                 parent,
                 false
             )
@@ -28,18 +28,17 @@ class TopDestinationRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(travelInfoList[position])
         holder.binding.root.setOnClickListener {
-            iOnListItemClickListener.onListItemClickListener(travelInfoList[position].id)
+            iOnGuideItemClickListener.onListItemClickListener(travelInfoList[position].id)
         }
     }
 
     override fun getItemCount() = travelInfoList.size
 
-    class ViewHolder(val binding: SearchDestinationRecyclerItemBinding) :
+    class ViewHolder(val binding: MightNeedItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(modelInfo: TravelModelItem) {
-            binding.setVariable(BR.destinationSearchBinding, modelInfo)
+            binding.setVariable(BR.mightNeedBinding, modelInfo)
             binding.executePendingBindings()
         }
     }
-
 }

@@ -1,7 +1,6 @@
 package com.seymen.seymentravel.domain.usecase
 
-
-import android.util.Log
+import com.seymen.seymentravel.domain.model.GuideModelItem
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.domain.repository.ITravelInfoRepository
 import com.seymen.seymentravel.utils.Resource
@@ -58,4 +57,22 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Error(e.localizedMessage))
         }
     }
+
+    suspend fun getGuideInfo(): Flow<Resource<List<GuideModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getGuideInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+
+
 }

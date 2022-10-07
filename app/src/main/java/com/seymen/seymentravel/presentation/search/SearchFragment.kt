@@ -39,11 +39,12 @@ class SearchFragment : Fragment() , IOnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         NavBarHelper.navBarIsVisible(requireActivity())
-        setupObserversForTopRcycler()
+
+        setupObservers()
 
     }
 
-    private fun setupObserversForTopRcycler() {
+    private fun setupObservers() {
 
         binding.rcyclvTopDestination.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rcyclvNearbyAttr.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -81,7 +82,6 @@ class SearchFragment : Fragment() , IOnItemClickListener {
                 nearbyAttradapter.notifyDataSetChanged() // refresh
             }
         }
-
     }
 
     override fun onListItemClickListener(clickedId: String) {

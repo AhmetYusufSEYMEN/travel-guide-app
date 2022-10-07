@@ -40,8 +40,8 @@ data class TravelImage(
 
 @Parcelize
 data class GuideModelItem(
-    @SerializedName("icon")
-    val icon: String,
+    @SerializedName("url")
+    val url: String,
     @SerializedName("id")
     val id: String,
     @SerializedName("title")

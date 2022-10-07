@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:searchIcon="@drawable/search" />
+            app:searchIcon="@drawable/search_icon" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView5"
@@ -54,7 +54,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcyclvTopDestination"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"

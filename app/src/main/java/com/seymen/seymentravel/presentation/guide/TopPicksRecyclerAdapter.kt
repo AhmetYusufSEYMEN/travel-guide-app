@@ -1,4 +1,4 @@
-package com.seymen.seymentravel.presentation.home
+package com.seymen.seymentravel.presentation.guide
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,30 +8,35 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.seymen.seymentravel.BR
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.DealRecyclerItemBinding
+import com.seymen.seymentravel.databinding.TopPickItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class DealsRecyclerViewAdapter(
+class TopPicksRecyclerAdapter (
     private var travelInfoList: List<TravelModelItem>,
-    private val iOnListItemClickListener: IOnListItemClickListener
-) : RecyclerView.Adapter<DealsRecyclerViewAdapter.ViewHolder> () {
-    
+    private val iOnGuideItemClickListener: IOnGuideItemClickListener
+) : RecyclerView.Adapter<TopPicksRecyclerAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.deal_recycler_item, parent, false)
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.top_pick_item,
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(travelInfoList[position])
-        holder.binding.imgvHomeRecyclerview.setOnClickListener {
-            iOnListItemClickListener.onListItemClickListener(travelInfoList[position].id)
+        holder.binding.root.setOnClickListener {
+            iOnGuideItemClickListener.onListItemClickListener(travelInfoList[position].id)
         }
         holder.binding.frmLayoutProgressbar.visibility = View.GONE
 
         holder.binding.imgBtnAddBookmark.setOnClickListener {
             holder.binding.frmLayoutProgressbar.visibility = View.VISIBLE
-            iOnListItemClickListener.onItemBookmarkClickListener(position)
+            iOnGuideItemClickListener.onItemBookmarkClickListener(position)
 
         }
 
@@ -43,9 +48,10 @@ class DealsRecyclerViewAdapter(
 
     override fun getItemCount() = travelInfoList.size
 
-    class ViewHolder (val binding: DealRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(modelInfo : TravelModelItem){
-            binding.setVariable(BR.dealRecyclerBinding,modelInfo)
+    class ViewHolder(val binding: TopPickItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(modelInfo: TravelModelItem) {
+            binding.setVariable(BR.topPickBinding, modelInfo)
             binding.executePendingBindings()
         }
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="categoryBinding"
+            type="com.seymen.seymentravel.domain.model.GuideModelItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:background="@drawable/category_background"
+        android:padding="@dimen/_8sdp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="center"
+            imageUrl="@{categoryBinding.url}"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/blue_title_color"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:text="@{categoryBinding.title}"
+           android:layout_marginStart="@dimen/_3sdp"
+           />
+    </LinearLayout>
+</layout>

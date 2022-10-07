@@ -7,18 +7,121 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/layout_background"
-        tools:context=".presentation.guide.GuideFragment">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/layout_background"
+                tools:context=".presentation.guide.GuideFragment">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txvGuide"
+                    android:text="@string/guide"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/title_style" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView5"
+                    android:text="MIGHT NEED THIS"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="@+id/txvGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/txvGuide"
+                    style="@style/txt_search_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcyclvMightNeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:background="@drawable/searchview_background"
+                    android:layoutDirection="rtl"
+                    app:defaultQueryHint="@string/where_next"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rcyclvMightNeed"
+                    app:searchIcon="@drawable/search_icon" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcyclvCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView6"
+                    android:text="NEARBY ATTARACTIONS"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintStart_toStartOf="@+id/txvGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/rcyclvCategory"
+                    style="@style/txt_search_title" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcyclvTopPick"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/seeAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:fontFamily="@font/source_sans_pro_semibold"
+                    android:textColor="@color/pink"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>
+
+    <!-- tools:context=".presentation.guide.GuideFragment">
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView"
             android:text="@string/guide"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/title_style" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+            style="@style/title_style" />-->

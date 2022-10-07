@@ -15,5 +15,6 @@
     <color name="detail_text_color">#0A2753</color>
     <color name="detail_city_txt_color">#39414B</color>
     <color name="detail_transparent">#59FFFFFF</color>
+    <color name="blue_title_color">#0048F0</color>
 
 </resources>

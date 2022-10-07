@@ -34,7 +34,7 @@
            app:itemBackground="@drawable/bnv_item_background"
            android:layout_marginStart="@dimen/_16sdp"
            android:layout_marginEnd="@dimen/_16sdp"
-           android:layout_marginBottom="@dimen/_16sdp"
+           android:layout_marginBottom="@dimen/_8sdp"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"

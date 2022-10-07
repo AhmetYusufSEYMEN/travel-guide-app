@@ -12,7 +12,7 @@ import com.seymen.seymentravel.databinding.SearchNearbyRecyclerItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
 class NearbyAttrRecyclerViewAdapter (
-    private var travelArrayList: List<TravelModelItem>,
+    private var travelInfoList: List<TravelModelItem>,
     private val iOnItemClickListener: IOnItemClickListener
 ) : RecyclerView.Adapter<NearbyAttrRecyclerViewAdapter.ViewHolder> () {
 
@@ -28,9 +28,9 @@ class NearbyAttrRecyclerViewAdapter (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(travelArrayList[position])
+        holder.bind(travelInfoList[position])
         holder.binding.imgvSearchNearbyRecyclerview.setOnClickListener {
-            iOnItemClickListener.onListItemClickListener(travelArrayList[position].id)
+            iOnItemClickListener.onListItemClickListener(travelInfoList[position].id)
         }
         holder.binding.frmLayoutProgressbar.visibility = View.GONE
 
@@ -40,13 +40,13 @@ class NearbyAttrRecyclerViewAdapter (
 
         }
 
-        when(travelArrayList[position].isBookmark){
+        when(travelInfoList[position].isBookmark){
             true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
             false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
         }
     }
 
-    override fun getItemCount() = travelArrayList.size
+    override fun getItemCount() = travelInfoList.size
 
     class ViewHolder (val binding: SearchNearbyRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(modelInfo : TravelModelItem){
