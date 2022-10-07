@@ -31,7 +31,7 @@ class DetailImagesRecyclerView(
         }
     }
 
-    override fun getItemCount() = travelImagesList.size // 4 tane resim
+    override fun getItemCount() = travelImagesList.size
 
     class ViewHolder (val binding: DetailRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind( image : TravelImage){

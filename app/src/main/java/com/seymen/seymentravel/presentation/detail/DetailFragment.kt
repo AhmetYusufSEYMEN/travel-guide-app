@@ -91,7 +91,6 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
 
     private fun setImage(clickedPosition:Int){
 
-        Toast.makeText(requireContext(), ""+clickedPosition, Toast.LENGTH_SHORT).show()
         binding.travelBigImage = travelModelItem.images[clickedPosition].url
     }
 

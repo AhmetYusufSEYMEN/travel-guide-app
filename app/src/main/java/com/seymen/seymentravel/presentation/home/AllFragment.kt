@@ -20,7 +20,7 @@ class AllFragment : Fragment(), IOnListItemClickListener {
     private var _binding: FragmentAllBinding? = null
     private val binding get() = _binding!!
     private val allViewModel by viewModels<AllViewModel>()
-    private lateinit var allList: ArrayList<TravelModelItem> // bookmark için
+    private lateinit var allList: ArrayList<TravelModelItem>
     private var updatedPosition = 0
     private  lateinit var adapter: DealsRecyclerViewAdapter
 
@@ -62,17 +62,12 @@ class AllFragment : Fragment(), IOnListItemClickListener {
             if (isSuccess){
                 allList.removeAt(updatedPosition)
                allList.add(updatedPosition,allViewModel.itemUpdated.value!!)
-                adapter.notifyDataSetChanged() // reflesh
+                adapter.notifyDataSetChanged() // refresh
             }
         }
 
         allViewModel.errorState.observe(viewLifecycleOwner) {
-            AlertDialogHelper.createSimpleAlertDialog(
-                requireContext(),
-                getString(R.string.error),
-                it,
-                resources.getString(R.string.positive_button_ok)
-            )
+            AlertDialogHelper.createSimpleAlertDialog(requireContext(), getString(R.string.error), it, resources.getString(R.string.positive_button_ok))
         }
 
     }

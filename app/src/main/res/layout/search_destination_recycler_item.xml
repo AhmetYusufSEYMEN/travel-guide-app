@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="destinationSearchBinding"
+            type="com.seymen.seymentravel.domain.model.TravelModelItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,8 +15,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgvSearchDestinationRecyclerview"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_134sdp"
+            imageUrl="@{destinationSearchBinding.images.get(0).url}"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_140sdp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
@@ -24,33 +27,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/roundedImageViewItem"
-            tools:src="@drawable/img_tools_exmple" />
+            app:shapeAppearanceOverlay="@style/roundedImageViewItem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txvSearchDestinationCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@{destinationSearchBinding.city}"
             android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Tokyo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txvSearchDestinationCountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/source_sans_pro"
+            android:text="@{destinationSearchBinding.country}"
             android:textColor="@color/white"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvSearchDestinationCity"
-            tools:text="Japan" />
+            app:layout_constraintTop_toBottomOf="@+id/txvSearchDestinationCity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

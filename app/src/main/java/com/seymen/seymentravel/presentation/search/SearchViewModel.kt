@@ -1,10 +1,9 @@
-package com.seymen.seymentravel.presentation.home
+package com.seymen.seymentravel.presentation.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seymen.seymentravel.domain.model.TravelModelItem
-import com.seymen.seymentravel.domain.repository.ITravelInfoRepository
 import com.seymen.seymentravel.domain.usecase.TravelInfoUseCase
 import com.seymen.seymentravel.utils.Resource
 import com.seymen.seymentravel.utils.SingleLiveEvent
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AllViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val dealsUseCase: TravelInfoUseCase,
 ) : ViewModel() {
 
@@ -28,7 +27,7 @@ class AllViewModel @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getDealsInfo() {
+    fun getData() {
         viewModelScope.launch {
             dealsUseCase.getTravelInfo().collect { result ->
                 when (result) {
@@ -69,4 +68,5 @@ class AllViewModel @Inject constructor(
             }
         }
     }
+
 }
