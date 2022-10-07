@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.FragmentAllBinding
 import com.seymen.seymentravel.databinding.FragmentFlightsBinding
 import com.seymen.seymentravel.utils.AlertDialogHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +43,7 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
         allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
             val filterFlight = it.filter { it.category == "flight" }
-            binding.flightRcyclerView.adapter = TravelListRecyclerViewAdapter(filterFlight,this)
+            binding.flightRcyclerView.adapter = DealsRecyclerViewAdapter(filterFlight,this)
         }
         allViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

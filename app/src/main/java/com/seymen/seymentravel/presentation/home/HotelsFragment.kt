@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.FragmentFlightsBinding
 import com.seymen.seymentravel.databinding.FragmentHotelsBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.utils.AlertDialogHelper
@@ -24,7 +23,7 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
     private val binding get() = _binding!!
     private val allViewModel by viewModels<AllViewModel>()
     private lateinit var filterHotel: List<TravelModelItem>
-    private lateinit var isBookmarkBtn : TravelListRecyclerViewAdapter
+    private lateinit var isBookmarkBtn : DealsRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +48,7 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
         allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
             filterHotel = it.filter { it.category == "hotel" }
-            binding.hotelsRcyclerView.adapter = TravelListRecyclerViewAdapter(filterHotel,this)
+            binding.hotelsRcyclerView.adapter = DealsRecyclerViewAdapter(filterHotel,this)
         }
         allViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -68,10 +67,9 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
     override fun onItemBookmarkClickListener(position: Int) {
         Toast.makeText(requireContext(), "bookmark tıklandı $position", Toast.LENGTH_SHORT).show()
         Log.v("bookmark",filterHotel[position].isBookmark.toString())
+
         when(filterHotel[position].isBookmark){
-            false->{
-                filterHotel[position].isBookmark = true
-            }
+            false-> filterHotel[position].isBookmark = true
             true -> filterHotel[position].isBookmark = false
         }
         allViewModel.updateTravelInfo(filterHotel[position])

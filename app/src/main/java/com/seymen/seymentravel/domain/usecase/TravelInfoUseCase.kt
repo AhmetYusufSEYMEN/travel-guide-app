@@ -1,6 +1,7 @@
 package com.seymen.seymentravel.domain.usecase
 
 
+import android.util.Log
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.domain.repository.ITravelInfoRepository
 import com.seymen.seymentravel.utils.Resource
@@ -16,11 +17,11 @@ class TravelInfoUseCase @Inject constructor(
 
     suspend fun getTravelInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
         try {
-            val movies = iTravelInfoRepository.getTravelInfo()
+            val data = iTravelInfoRepository.getTravelInfo()
 
             // loading
             emit(Resource.Loading())
-            emit(Resource.Success(movies))
+            emit(Resource.Success(data))
 
         }catch (e: HttpException){
             emit(Resource.Error(e.localizedMessage))
@@ -29,12 +30,12 @@ class TravelInfoUseCase @Inject constructor(
         }
     }
 
-    suspend fun getTravelInfoDetailsById(detailId:String): Flow<Resource<List<TravelModelItem>>> = flow {
+    suspend fun getTravelInfoDetailsById(detailId:String): Flow<Resource<TravelModelItem>> = flow {
         try {
-            val movies = iTravelInfoRepository.getTravelInfoDetailsById(detailId)
+            val data = iTravelInfoRepository.getTravelInfoDetailsById(detailId)
             // loading
             emit(Resource.Loading())
-            emit(Resource.Success(movies))
+            emit(Resource.Success(data))
 
         }catch (e: HttpException){
             emit(Resource.Error(e.localizedMessage))
@@ -43,43 +44,18 @@ class TravelInfoUseCase @Inject constructor(
         }
     }
 
-    /*fun getTravelInfo(): Flow<Resource<List<TravelModel>>> = flow {
-        emit(Resource.Loading)
-        val resource =
-            try {
-                val response = travelInfoRepository.getTravelInfo()
-                Resource.Success(response)
-            } catch (e: Throwable) {
-                Resource.Fail(e)
-            }
-        emit(resource)
-    }*/
-   /* PHİLP
-    operator fun invoke(): Flow<Resource<List<TravelModel>>> = flow {
+    suspend fun updateBookMarkStatus(isBookmarkPost: TravelModelItem): Flow<Resource<TravelModelItem>> = flow {
         try {
-            emit(Resource.Loading<List<TravelModel>>())
-            val repo = travelInfoRepository.getTravelInfo()
-            emit(Resource.Success<List<TravelModel>>(repo))
-        } catch(e: HttpException) {
-            emit(Resource.Error<List<TravelModel>>(e.localizedMessage ?: "An unexpected error occured"))
-        } catch(e: IOException) {
-            emit(Resource.Error<List<TravelModel>>("Couldn't reach server. Check your internet connection."))
+            val data = iTravelInfoRepository.updateTravelInfo(isBookmarkPost,isBookmarkPost.id)
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
         }
     }
-    */
-    /*private var _travelInfo = MutableLiveData<TravelModel>()
-    val travelInfo : LiveData<TravelModel> = _travelInfo
-
-     fun getTravelInfo(){
-        travelInfoRepository.getTravelInfo().enqueue(object: Callback<TravelModel> {
-            override fun onResponse(call: Call<TravelModel>, response: Response<TravelModel>) {
-                _travelInfo.value = response.body()
-            }
-
-            override fun onFailure(call: Call<TravelModel>, t: Throwable) {
-                Log.v("TAG",t.message.toString())
-            }
-
-        })
-    }*/
 }

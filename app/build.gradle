@@ -6,6 +6,11 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+//Add these lines
+def Base_URL = '"' + BASE_URL + '"' ?: '"BASE URL"'
+android.buildTypes.each { type ->
+    type.buildConfigField 'String', 'Base_URL', BASE_URL
+}
 
 android {
     namespace 'com.seymen.seymentravel'

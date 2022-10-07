@@ -1,8 +1,8 @@
 package com.seymen.seymentravel.presentation.home
 
-import android.util.Log
-import android.util.MutableBoolean
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.domain.repository.ITravelInfoRepository
 import com.seymen.seymentravel.domain.usecase.TravelInfoUseCase
@@ -14,22 +14,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllViewModel @Inject constructor(
-    private val dealsUseCase : TravelInfoUseCase,
+    private val dealsUseCase: TravelInfoUseCase,
     private val iTravelInfoRepository: ITravelInfoRepository
 ) : ViewModel() {
 
     //cached
-    private val _travelInfo =MutableLiveData<List<TravelModelItem>>()
+    private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
+    val itemUpdated = MutableLiveData<TravelModelItem>()
 
     //public
-    val travelInfo : MutableLiveData<List<TravelModelItem>> = _travelInfo
-    val bookmarkState = MutableLiveData<Boolean>()
+    val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
+
+    //val bookmarkState = MutableLiveData<Boolean>()
     val loadingState = MutableLiveData<Boolean>()
+    val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
     fun getDealsInfo() {
         viewModelScope.launch {
-            dealsUseCase.getTravelInfo().collect{ result ->
+            dealsUseCase.getTravelInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -37,7 +40,6 @@ class AllViewModel @Inject constructor(
                     is Resource.Success -> {
                         loadingState.value = false
                         _travelInfo.value = result.data!!
-                        bookmarkState.value  = result.data[0].isBookmark
                     }
                     is Resource.Error -> {
                         loadingState.value = false
@@ -50,7 +52,23 @@ class AllViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            iTravelInfoRepository.updateTravelInfo(isBookmarkPost,isBookmarkPost.id)
+            dealsUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        itemUpdated.value = result.data!!
+                        isUpdateSuccess.value = true
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        isUpdateSuccess.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
         }
     }
 }

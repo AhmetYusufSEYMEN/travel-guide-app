@@ -1,6 +1,7 @@
 package com.seymen.seymentravel.presentation.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -10,12 +11,11 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.DealRecyclerItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class TravelListRecyclerViewAdapter(
+class DealsRecyclerViewAdapter(
     private var travelArrayList: List<TravelModelItem>,
     private val iOnListItemClickListener: IOnListItemClickListener
-) : RecyclerView.Adapter<TravelListRecyclerViewAdapter.ViewHolder> () {
-
-
+) : RecyclerView.Adapter<DealsRecyclerViewAdapter.ViewHolder> () {
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.deal_recycler_item, parent, false)
@@ -27,13 +27,17 @@ class TravelListRecyclerViewAdapter(
         holder.binding.imgvHomeRecyclerview.setOnClickListener {
             iOnListItemClickListener.onListItemClickListener(travelArrayList[position].id)
         }
+        holder.binding.frmLayoutProgressbar.visibility = View.GONE
 
         holder.binding.imgBtnAddBookmark.setOnClickListener {
+            holder.binding.frmLayoutProgressbar.visibility = View.VISIBLE
             iOnListItemClickListener.onItemBookmarkClickListener(position)
-            when(travelArrayList[position].isBookmark){
-                true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
-                false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
-            }
+
+        }
+
+        when(travelArrayList[position].isBookmark){
+            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
+            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
         }
     }
 

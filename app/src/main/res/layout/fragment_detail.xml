@@ -6,8 +6,11 @@
     <data>
         <variable
             name="travelDetailBinding"
-            type="String" />
+            type="com.seymen.seymentravel.domain.model.TravelModelItem" />
 
+        <variable
+            name="travelBigImage"
+            type="java.lang.String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,17 +21,18 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgvDetail"
             android:layout_width="0dp"
             android:layout_height="@dimen/_300sdp"
-            android:scaleType="fitXY"
-            android:elevation="30dp"
+            android:scaleType="centerCrop"
+            android:elevation="29dp"
+            imageUrl="@{travelBigImage}"
             app:shapeAppearanceOverlay="@style/roundedImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_tools_exmple" />
-
+             />
+        <!--imageUrl="@{travelDetailBinding.images.get(0).url}"-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txv_country"
@@ -36,12 +40,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="Nusa Pedina"
+            android:text="@{travelDetailBinding.title}"
             android:textColor="@color/detail_text_color"
             android:textSize="@dimen/_19ssp"
             app:fontFamily="@font/montserrat"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView" />
+            app:layout_constraintTop_toBottomOf="@id/imgvDetail" />
+        <!--android:text="@{travelDetailBinding.title}"-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txv_city"
@@ -51,12 +56,13 @@
             android:drawableStart="@drawable/pin_icon"
             android:layout_marginTop="@dimen/_2sdp"
             android:drawablePadding="@dimen/_5sdp"
-            android:text="Bali, Indonesia"
+            android:text="@{travelDetailBinding.city + `, `+ travelDetailBinding.country}"
             android:textSize="@dimen/_10ssp"
             android:textColor="@color/detail_city_txt_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txv_country"
             />
+        <!--android:text="@{travelDetailBinding.city + `, `+ travelDetailBinding.country}"-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txv_description"
@@ -65,13 +71,13 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est vel odio elementum non id venenatis, elementum. Enim augue velit tristique eu viverra. Massa.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est vel odio elementum non id venenatis, elementum. Enim augue velit tristique eu viverra. Massa."
+            android:text="@{travelDetailBinding.description}"
             android:textColor="@color/detail_city_txt_color"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txv_city" />
+        <!--android:text="@{travelDetailBinding.description}"-->
 
         <ImageButton
             android:id="@+id/backButton"
@@ -80,21 +86,34 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est vel odio elementum 
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginStart="@dimen/_6sdp"
             android:scaleType="fitXY"
-            android:elevation="31dp"
+            android:translationZ="30dp"
             android:background="@null"
             android:src="@drawable/ic_back_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailImageRecyclerView"
             android:layout_width="@dimen/_275sdp"
-            android:layout_height="@dimen/_55sdp"
-            android:background="@color/detail_transparent"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@drawable/rounder"
             android:padding="15dp"
+            android:elevation="30dp"
             android:layout_marginBottom="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imgvDetail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

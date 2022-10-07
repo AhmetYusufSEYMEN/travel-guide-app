@@ -7,16 +7,18 @@ import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.domain.usecase.TravelInfoUseCase
 import com.seymen.seymentravel.utils.Resource
 import com.seymen.seymentravel.utils.SingleLiveEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val dealsUseCase : TravelInfoUseCase
 ) : ViewModel() {
     //cached
-    private val _travelInfo = MutableLiveData<List<TravelModelItem>?>()
+    private val _travelDetailInfo = MutableLiveData<TravelModelItem>()
     //public
-    val travelInfo : MutableLiveData<List<TravelModelItem>?> = _travelInfo
+    val travelDetailInfo : MutableLiveData<TravelModelItem> = _travelDetailInfo
 
     val loadingState = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
@@ -30,8 +32,7 @@ class DetailsViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         loadingState.value = false
-                        _travelInfo.value = result.data!!
-
+                        _travelDetailInfo.value = result.data!!
                     }
                     is Resource.Error -> {
                         loadingState.value = false
@@ -41,6 +42,4 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
-
-
 }

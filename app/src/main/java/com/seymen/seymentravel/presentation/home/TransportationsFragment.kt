@@ -10,8 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.FragmentFlightsBinding
-import com.seymen.seymentravel.databinding.FragmentHotelsBinding
 import com.seymen.seymentravel.databinding.FragmentTransportationsBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.utils.AlertDialogHelper
@@ -51,7 +49,7 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
 
              filterFlight = it.filter { it.category == "transportation" }
             binding.transportationRcyclerView.adapter =
-                TravelListRecyclerViewAdapter(filterFlight, this)
+                DealsRecyclerViewAdapter(filterFlight, this)
         }
         allViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

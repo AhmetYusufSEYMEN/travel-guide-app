@@ -11,12 +11,12 @@ class ITravelInfoRepositoryImpl @Inject constructor(private val apiService: ApiS
         return apiService.getTravelInfo()
     }
 
-    override suspend fun getTravelInfoDetailsById(detailId: String): List<TravelModelItem> {
+    override suspend fun getTravelInfoDetailsById(detailId: String): TravelModelItem {
         return apiService.getTravelDetailsById(detailId)
     }
 
     override suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id:String): TravelModelItem {
-        return apiService.updateTravelInfo(isBookmarkPost, id)
+        return apiService.updateTravelInfo(isBookmarkPost, id) // retrofit
     }
 
 }

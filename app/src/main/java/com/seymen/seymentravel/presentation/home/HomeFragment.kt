@@ -58,7 +58,13 @@ class HomeFragment : Fragment() {
     private fun setViewPager() {
 
         val tabTitles = arrayOf(getString(R.string.all),getString(R.string.flights),getString(R.string.hotels),getString(R.string.transportation))
-
+        /**
+         * ---IMPORTANT---
+         * I could create a separate query for each section in the Deals section (GET - Repo - Use_Case - ViewModel).
+         * But Mock Api's search feature filters all data.
+         * So I filtered the results myself as it was returning irrelevant results.
+         * The same goes for the Search Fragment.
+         */
         binding.apply {
             viewPagerHome.adapter = DealsViewPagerAdapter(childFragmentManager,lifecycle)
             viewPagerHome.isUserInputEnabled = false
