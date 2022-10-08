@@ -85,6 +85,7 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
 
             binding.rcyclvTopPick.adapter = topPickAdapter
 
+            binding.swipe.isRefreshing = false
         }
 
         guideViewModel.getGuideInfo()
@@ -94,17 +95,19 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
 
             binding.rcyclvCategory.adapter = categoryAdapter
 
+            binding.swipe.isRefreshing = false
+
         }
-
-
 
         guideViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            binding.swipe.isRefreshing = false
         }
 
         guideViewModel.errorState.observe(viewLifecycleOwner) {
             AlertDialogHelper.createSimpleAlertDialog(requireContext(), getString(R.string.error), it, resources.getString(
                 R.string.positive_button_ok))
+            binding.swipe.isRefreshing = false
         }
 
         guideViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
@@ -112,7 +115,12 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
                 topPickList.removeAt(updatedPosition)
                 topPickList.add(updatedPosition,guideViewModel.itemUpdated.value!!)
                 topPickAdapter.notifyDataSetChanged() // refresh
+                binding.swipe.isRefreshing = false
             }
+        }
+        binding.swipe.setOnRefreshListener {
+            guideViewModel.getData()
+            guideViewModel.getGuideInfo()
         }
     }
 

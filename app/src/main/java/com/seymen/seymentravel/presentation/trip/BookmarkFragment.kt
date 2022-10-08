@@ -75,7 +75,6 @@ class BookmarkFragment : Fragment(), IOnTripItemClickListener{
         tripViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
             if (isSuccess){
                 bookmarkList.removeAt(updatedPosition)
-                bookmarkList.add(updatedPosition,tripViewModel.itemUpdated.value!!)
                 bookmarkAdapter.notifyDataSetChanged() // refresh
             }
         }

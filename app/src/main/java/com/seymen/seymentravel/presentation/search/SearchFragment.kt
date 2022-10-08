@@ -79,16 +79,19 @@ class SearchFragment : Fragment() , IOnItemClickListener {
             binding.rcyclvTopDestination.adapter = topDestadapter
             binding.rcyclvNearbyAttr.adapter = nearbyAttradapter
 
+            binding.swipe.isRefreshing = false
+
         }
 
         searchViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-
+            binding.swipe.isRefreshing = false
         }
 
         searchViewModel.errorState.observe(viewLifecycleOwner) {
             AlertDialogHelper.createSimpleAlertDialog(requireContext(), getString(R.string.error), it, resources.getString(
                 R.string.positive_button_ok))
+            binding.swipe.isRefreshing = false
         }
 
         searchViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
@@ -96,7 +99,11 @@ class SearchFragment : Fragment() , IOnItemClickListener {
                 searchNearbyList.removeAt(updatedPosition)
                 searchNearbyList.add(updatedPosition,searchViewModel.itemUpdated.value!!)
                 nearbyAttradapter.notifyDataSetChanged() // refresh
+                binding.swipe.isRefreshing = false
             }
+        }
+        binding.swipe.setOnRefreshListener {
+            searchViewModel.getData()
         }
     }
 
