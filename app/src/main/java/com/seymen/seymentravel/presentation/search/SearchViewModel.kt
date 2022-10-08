@@ -18,10 +18,11 @@ class SearchViewModel @Inject constructor(
 
     //cached
     private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
-    val itemUpdated = MutableLiveData<TravelModelItem>()
-
     //public
     val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
+
+    private val _itemUpdated = MutableLiveData<TravelModelItem>()
+    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()
@@ -56,7 +57,7 @@ class SearchViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         loadingState.value = false
-                        itemUpdated.value = result.data!!
+                        _itemUpdated.value = result.data!!
                         isUpdateSuccess.value = true
                     }
                     is Resource.Error -> {

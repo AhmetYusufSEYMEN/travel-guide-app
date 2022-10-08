@@ -36,7 +36,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txv_country"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_20sdp"
@@ -44,6 +44,7 @@
             android:textColor="@color/detail_text_color"
             android:textSize="@dimen/_19ssp"
             app:fontFamily="@font/montserrat"
+            app:layout_constraintEnd_toStartOf="@+id/imgvIsBookmark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgvDetail" />
         <!--android:text="@{travelDetailBinding.title}"-->
@@ -114,6 +115,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+
+        <Button
+            android:id="@+id/btnAddBookmark"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/add_bookmark"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/pink"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgvIsBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@{travelDetailBinding.bookmark ? @drawable/checked_favourite_icon : @drawable/unchecked_favourite_icon}"
+            android:translationZ="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/detailImageRecyclerView"
+            app:layout_constraintTop_toTopOf="@+id/txv_country" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,7 +16,9 @@ import com.seymen.seymentravel.databinding.FragmentDetailBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.presentation.home.AllViewModel
 import com.seymen.seymentravel.utils.AlertDialogHelper
+import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.internal.managers.ViewComponentManager.ViewWithFragmentComponentBuilderEntryPoint
 
 
 @AndroidEntryPoint
@@ -26,10 +28,10 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     private val binding get() = _binding!!
     private lateinit var mainActivity: MainActivity
     private val detailsViewModel: DetailsViewModel by viewModels()
-    private val allDataViewModel: AllViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var travelDetailID : String
     private lateinit var  travelModelItem: TravelModelItem
+
 
 
     override fun onCreateView(
@@ -48,13 +50,20 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
 
         travelDetailID = args.detailID
 
+        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
+
         setInfoObserver()
-        //setRecyclerObserver()
 
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        binding.btnAddBookmark.setOnClickListener {
+            setBookmark()
+        }
     }
+
+
 
     private fun setInfoObserver() {
 
@@ -69,6 +78,10 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
             binding.travelBigImage = travelModelItem.images[0].url
             binding.executePendingBindings()
 
+            if (it.isBookmark){
+                binding.btnAddBookmark.visibility = View.GONE
+            }
+
             binding.detailImageRecyclerView.adapter = DetailImagesRecyclerView(it.images,this)
 
         }
@@ -82,6 +95,21 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
             AlertDialogHelper.createSimpleAlertDialog(requireContext(),getString(R.string.error),it,resources.getString(
                 R.string.positive_button_ok))
         }
+
+        detailsViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
+            if (isSuccess){
+                binding.progressBar.visibility = View.GONE
+                binding.btnAddBookmark.visibility = View.GONE
+                binding.imgvIsBookmark.setImageResource(R.drawable.checked_favourite_icon)
+            }
+        }
+    }
+
+    private fun setBookmark() {
+        travelModelItem.isBookmark = true
+        detailsViewModel.updateTravelInfo(travelModelItem)
+        binding.progressBar.visibility = View.VISIBLE
+
     }
 
 
@@ -90,7 +118,6 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     }
 
     private fun setImage(clickedPosition:Int){
-
         binding.travelBigImage = travelModelItem.images[clickedPosition].url
     }
 

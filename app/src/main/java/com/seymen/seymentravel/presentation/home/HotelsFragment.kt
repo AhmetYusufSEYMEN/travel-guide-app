@@ -21,7 +21,7 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
 
     private var _binding: FragmentHotelsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel by viewModels<AllViewModel>()
+    private val allViewModel : AllViewModel by viewModels()
     private lateinit var filterHotel: List<TravelModelItem>
     private lateinit var isBookmarkBtn : DealsRecyclerViewAdapter
 

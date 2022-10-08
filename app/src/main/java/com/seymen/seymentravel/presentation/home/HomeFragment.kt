@@ -12,6 +12,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import com.google.android.material.tabs.TabLayoutMediator
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentHomeBinding
+import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NavBarHelper.navBarIsVisible(requireActivity())
+        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
         setViewPager()
         setupListeners()
 

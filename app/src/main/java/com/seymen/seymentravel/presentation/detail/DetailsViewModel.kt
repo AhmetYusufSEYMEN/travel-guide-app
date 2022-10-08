@@ -20,8 +20,12 @@ class DetailsViewModel @Inject constructor(
     //public
     val travelDetailInfo : MutableLiveData<TravelModelItem> = _travelDetailInfo
 
+    private val _itemUpdated = MutableLiveData<TravelModelItem>()
+    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+
     val loadingState = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
+    val isUpdateSuccess = MutableLiveData<Boolean>()
 
     fun getTravelInfoDetailsById(detailId: String) {
         viewModelScope.launch {
@@ -36,6 +40,28 @@ class DetailsViewModel @Inject constructor(
                     }
                     is Resource.Error -> {
                         loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
+        viewModelScope.launch {
+            dealsUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _itemUpdated.value = result.data!!
+                        isUpdateSuccess.value = true
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        isUpdateSuccess.value = false
                         errorState.value = result.message
                     }
                 }

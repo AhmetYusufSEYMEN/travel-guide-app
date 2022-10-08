@@ -29,27 +29,31 @@
             app:layout_constraintTop_toTopOf="parent"
             style="@style/title_style" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtxSearch"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_13sdp"
             android:background="@drawable/searchview_background"
-            android:layoutDirection="rtl"
-            app:defaultQueryHint="@string/where_next"
+            android:hint="@string/where_next"
+            android:drawableEnd="@drawable/search_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:searchIcon="@drawable/search_icon" />
+            />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView5"
             android:text="TOP DESTINATIONS"
             android:layout_marginTop="@dimen/_12sdp"
-            app:layout_constraintStart_toStartOf="@+id/searchView"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/edtxSearch"
+            app:layout_constraintTop_toBottomOf="@+id/edtxSearch"
             style="@style/txt_search_title" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -64,7 +68,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView6"
             android:text="NEARBY ATTARACTIONS"
-            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/edtxSearch"
             app:layout_constraintTop_toBottomOf="@+id/rcyclvTopDestination"
             style="@style/txt_search_title" />
 

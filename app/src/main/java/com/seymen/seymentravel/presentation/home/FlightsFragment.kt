@@ -18,7 +18,7 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
 
     private var _binding: FragmentFlightsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel by viewModels<AllViewModel>()
+    private val allViewModel : AllViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -20,4 +20,10 @@
     <string name="positive_button_ok">Ok</string>
     <string name="error">Error</string>
     <string name="coming_soon">Coming Soon</string>
+    <string name="search_guide_text">A country, a city, a place... or anything</string>
+    <string name="tst_connct">Lütfen internet bağlantınızı kontrol ediniz! Uygulama kapatılıyor.</string>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="result">Result</string>
+    <string name="see_all">See All</string>
+    <string name="no_result">Sorry! No results found</string>
 </resources>

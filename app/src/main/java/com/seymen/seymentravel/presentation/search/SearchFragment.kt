@@ -1,18 +1,23 @@
 package com.seymen.seymentravel.presentation.search
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-
 import com.seymen.seymentravel.databinding.FragmentSearchBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
+import com.seymen.seymentravel.presentation.guide.GuideFragmentDirections
 import com.seymen.seymentravel.utils.AlertDialogHelper
+import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +26,7 @@ class SearchFragment : Fragment() , IOnItemClickListener {
 
     private var _binding : FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private val searchViewModel by viewModels<SearchViewModel>()
+    private val searchViewModel : SearchViewModel by viewModels()
     private lateinit var searchTopDestList: ArrayList<TravelModelItem>
     private lateinit var searchNearbyList: ArrayList<TravelModelItem>
     private var updatedPosition = 0
@@ -40,7 +45,18 @@ class SearchFragment : Fragment() , IOnItemClickListener {
 
         NavBarHelper.navBarIsVisible(requireActivity())
 
+        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
+
         setupObservers()
+
+        binding.edtxSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val action = SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(binding.edtxSearch.text.toString().lowercase()) //.lowercase()
+                findNavController().navigate(action)
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
 
     }
 

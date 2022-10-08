@@ -19,7 +19,7 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
     private var _binding: FragmentAllBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel by viewModels<AllViewModel>()
+    private val allViewModel : AllViewModel by viewModels()
     private lateinit var allList: ArrayList<TravelModelItem>
     private var updatedPosition = 0
     private  lateinit var adapter: DealsRecyclerViewAdapter

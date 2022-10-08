@@ -17,10 +17,11 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_3sdp"
             android:gravity="center"
+            android:scaleType="centerCrop"
             imageUrl="@{categoryBinding.url}"
             />
 

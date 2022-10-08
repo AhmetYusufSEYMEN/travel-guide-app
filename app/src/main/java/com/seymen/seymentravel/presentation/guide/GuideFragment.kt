@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentGuideBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
+import com.seymen.seymentravel.presentation.search.SearchFragmentDirections
 import com.seymen.seymentravel.utils.AlertDialogHelper
+import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +24,7 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
 
     private var _binding : FragmentGuideBinding? = null
     private val binding get() = _binding!!
-    private val guideViewModel by viewModels<GuideViewModel>()
+    private val guideViewModel : GuideViewModel by viewModels()
     private lateinit var mightNeedList: ArrayList<TravelModelItem>
     private lateinit var topPickList: ArrayList<TravelModelItem>
     private var updatedPosition = 0
@@ -42,11 +45,23 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
 
         NavBarHelper.navBarIsVisible(requireActivity())
 
+        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
+
         setupObservers()
 
         binding.seeAll.paint?.isUnderlineText = true
         binding.seeAll.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
+            val action = GuideFragmentDirections.actionGuideFragmentToSearchResultFragment("ComingFromSeeAll")
+            findNavController().navigate(action)
+        }
+
+        binding.edtxSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val action = GuideFragmentDirections.actionGuideFragmentToSearchResultFragment(binding.edtxSearch.text.toString().lowercase()) //.lowercase()
+                findNavController().navigate(action)
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
     }
 
@@ -57,7 +72,6 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
         binding.rcyclvTopPick.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         guideViewModel.getData()
-
 
         guideViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
@@ -72,6 +86,7 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
             binding.rcyclvTopPick.adapter = topPickAdapter
 
         }
+
         guideViewModel.getGuideInfo()
         guideViewModel.guideInfo.observe(viewLifecycleOwner) {
 
@@ -79,14 +94,12 @@ class GuideFragment : Fragment() , IOnGuideItemClickListener {
 
             binding.rcyclvCategory.adapter = categoryAdapter
 
-
         }
 
 
 
         guideViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-
         }
 
         guideViewModel.errorState.observe(viewLifecycleOwner) {

@@ -20,8 +20,8 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
 
     private var _binding: FragmentTransportationsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel by viewModels<AllViewModel>()
-    private lateinit var  filterFlight: List<TravelModelItem> // bookmark için
+    private val allViewModel : AllViewModel by viewModels()
+    private lateinit var  filterFlight: List<TravelModelItem>
 
 
     override fun onCreateView(
