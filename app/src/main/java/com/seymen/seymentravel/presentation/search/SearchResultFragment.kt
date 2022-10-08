@@ -66,9 +66,6 @@ class SearchResultFragment : Fragment() {
                         binding.rcyclResult.visibility = View.GONE
                     }
             }
-
-
-
         }
 
         searchViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->

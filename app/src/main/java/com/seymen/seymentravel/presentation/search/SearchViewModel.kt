@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val dealsUseCase: TravelInfoUseCase,
+    private val travelInfoUseCase: TravelInfoUseCase,
 ) : ViewModel() {
 
     //cached
@@ -30,7 +30,7 @@ class SearchViewModel @Inject constructor(
 
     fun getData() {
         viewModelScope.launch {
-            dealsUseCase.getTravelInfo().collect { result ->
+            travelInfoUseCase.getTravelInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -50,7 +50,7 @@ class SearchViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            dealsUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

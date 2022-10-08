@@ -30,4 +30,5 @@
     <string name="result">Result</string>
     <string name="see_all">See All</string>
     <string name="no_result">Sorry! No results found</string>
+    <string name="bookmarks">Bookmarks</string>
 </resources>

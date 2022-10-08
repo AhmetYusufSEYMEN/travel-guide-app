@@ -1,4 +1,4 @@
-package com.seymen.seymentravel.presentation.home
+package com.seymen.seymentravel.presentation.trip
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AllViewModel @Inject constructor(
-    private val travelInfoUseCase: TravelInfoUseCase,
+class TripViewModel @Inject constructor(
+    private val travelInfoUseCase: TravelInfoUseCase
 ) : ViewModel() {
 
     //cached
@@ -28,7 +28,7 @@ class AllViewModel @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getDealsInfo() {
+    fun getData() {
         viewModelScope.launch {
             travelInfoUseCase.getTravelInfo().collect { result ->
                 when (result) {
@@ -69,4 +69,5 @@ class AllViewModel @Inject constructor(
             }
         }
     }
+
 }

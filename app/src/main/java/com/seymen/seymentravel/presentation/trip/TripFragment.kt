@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.seymen.seymentravel.MainActivity
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentTripBinding
+import com.seymen.seymentravel.domain.model.TravelModelItem
+import com.seymen.seymentravel.presentation.guide.*
+import com.seymen.seymentravel.utils.AlertDialogHelper
 import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import com.seymen.seymentravel.utils.DataBindingAdapters
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class TripFragment : Fragment() {
@@ -54,6 +59,7 @@ class TripFragment : Fragment() {
             }.attach()
         }
     }
+
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

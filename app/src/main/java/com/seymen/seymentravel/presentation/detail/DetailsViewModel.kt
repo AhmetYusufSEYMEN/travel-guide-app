@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val dealsUseCase : TravelInfoUseCase
+    private val travelInfoUseCase : TravelInfoUseCase
 ) : ViewModel() {
     //cached
     private val _travelDetailInfo = MutableLiveData<TravelModelItem>()
@@ -29,7 +29,7 @@ class DetailsViewModel @Inject constructor(
 
     fun getTravelInfoDetailsById(detailId: String) {
         viewModelScope.launch {
-            dealsUseCase.getTravelInfoDetailsById(detailId).collect { result ->
+            travelInfoUseCase.getTravelInfoDetailsById(detailId).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -49,7 +49,7 @@ class DetailsViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            dealsUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
