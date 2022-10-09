@@ -1,6 +1,7 @@
 # Travel Guide App
 It is a travel guide application where we can have information about places to go. Imagine an application where we can add trips that we plan to go in the near future or that we want to go later.
-Api Link : https://6339ed03471b8c3955684422.mockapi.io/seymenapi/allList
+ - All data is pulled or updated via API.
+ - Api Link : https://6339ed03471b8c3955684422.mockapi.io/seymenapi/allList
 
 ## Used Technologies 👨‍💻
  - MVVM with Clean Architecture
