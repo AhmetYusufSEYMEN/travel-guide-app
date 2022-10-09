@@ -88,6 +88,5 @@ dependencies {
     implementation "androidx.browser:browser:1.4.0"
     //Swipe Refresh Layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    //Blur View
-    //implementation 'jp.wasabeef:blurry:2.0.3'
+
 }

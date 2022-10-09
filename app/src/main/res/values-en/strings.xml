@@ -23,8 +23,16 @@
     <string name="search_guide_text">A country, a city, a place... or anything</string>
     <string name="tst_connct">Lütfen internet bağlantınızı kontrol ediniz! Uygulama kapatılıyor.</string>
     <string name="add_bookmark">Add Bookmark</string>
-    <string name="result">Result</string>
+    <string name="result">Results</string>
     <string name="see_all">See All</string>
-    <string name="no_result">Sorry! No results found</string>
+    <string name="no_result">Sorry! No results found!</string>
     <string name="bookmarks">Bookmarks</string>
+    <string name="finish_date">Finish date</string>
+    <string name="start_date">Start date</string>
+    <string name="save">Save</string>
+    <string name="add_trip">Add Trip</string>
+    <string name="might_need_this">MIGHT NEED THIS</string>
+    <string name="nearby_attaractions">NEARBY ATTARACTIONS</string>
+    <string name="top_destinations">TOP DESTINATIONS</string>
+    <string name="top_pick_articles">TOP-PICK ARTICLES</string>
 </resources>

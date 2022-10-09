@@ -50,7 +50,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView5"
-            android:text="TOP DESTINATIONS"
+            android:text="@string/top_destinations"
             android:layout_marginTop="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="@+id/edtxSearch"
             app:layout_constraintTop_toBottomOf="@+id/edtxSearch"
@@ -67,7 +67,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView6"
-            android:text="NEARBY ATTARACTIONS"
+            android:text="@string/nearby_attaractions"
             app:layout_constraintStart_toStartOf="@+id/edtxSearch"
             app:layout_constraintTop_toBottomOf="@+id/rcyclvTopDestination"
             style="@style/txt_search_title" />

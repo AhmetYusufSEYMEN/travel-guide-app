@@ -80,17 +80,10 @@ class BookmarkFragment : Fragment(), IOnTripItemClickListener{
         }
     }
 
-
     override fun onListItemClickListener(clickedId: String) {
-        openDetailFragment(clickedId)
     }
 
-    private fun openDetailFragment(clickedId: String) {
-        val action = GuideFragmentDirections.actionGuideFragmentToDetailFragment(clickedId)
-        findNavController().navigate(action)
-    }
-
-    override fun onItemBookmarkClickListener(position: Int) {
+    override fun onItemTripClickListener(position: Int) {
         when(bookmarkList[position].isBookmark){
             false->bookmarkList[position].isBookmark = true
             true ->bookmarkList[position].isBookmark = false

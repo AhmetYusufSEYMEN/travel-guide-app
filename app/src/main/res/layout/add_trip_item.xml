@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="addTripBinding"
+            type="com.seymen.seymentravel.domain.model.TravelModelItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgvAddTrip"
+            imageUrl="@{addTripBinding.images.get(0).url}"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageViewItem" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txvAddTripCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_19sdp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@{addTripBinding.title}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frmLayoutTickImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/add_trip_item_frame"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/imgvAddTrip"
+            app:layout_constraintEnd_toEndOf="@+id/imgvAddTrip"
+            app:layout_constraintStart_toStartOf="@+id/imgvAddTrip"
+            app:layout_constraintTop_toTopOf="@+id/imgvAddTrip">
+            <!--android:visibility="gone"-->
+
+            <ImageView
+                android:id="@+id/imgvTick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:translationZ="30dp"
+                android:src="@drawable/tick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

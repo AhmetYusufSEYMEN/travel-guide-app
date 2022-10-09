@@ -46,14 +46,14 @@ class SplashFragment : Fragment() {
         binding.imgvSplash.startAnimation(slideAnimation)
 
         slideAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?){findNavController().navigate(R.id.action_splashFragment_to_homeFragment)} // burası silinecek alt taraf devreye alınacak
+            override fun onAnimationStart(p0: Animation?){}
 
             override fun onAnimationEnd(p0: Animation?) {
-               /* sharedPreferencesUtils = SharedPreferencesUtils(requireActivity())
+                sharedPreferencesUtils = SharedPreferencesUtils(requireActivity())
                 when (sharedPreferencesUtils.readDataString(ONBOARDING_SP_KEY,"0")) {
                     "0" -> findNavController().navigate(R.id.action_splashFragment_to_onBoardFragment)
                     else -> findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-                }*/
+                }
             }
 
             override fun onAnimationRepeat(p0: Animation?) {}

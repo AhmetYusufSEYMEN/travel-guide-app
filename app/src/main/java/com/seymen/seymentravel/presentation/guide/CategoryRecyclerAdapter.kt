@@ -28,9 +28,6 @@ class CategoryRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(guideInfoList[position])
-       /* holder.binding.root.setOnClickListener {
-            iOnGuideItemClickListener.onListItemClickListener(guideInfoList[position].id)
-        }*/
     }
 
     override fun getItemCount() = guideInfoList.size

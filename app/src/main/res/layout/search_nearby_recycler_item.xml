@@ -56,10 +56,11 @@
 
         <ImageButton
             android:id="@+id/imgBtnAddBookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:background="@android:color/transparent"
             android:src="@drawable/round_bookmark_unchecked"
+            android:scaleType="fitXY"
             android:layout_marginEnd="@dimen/_9sdp"
             android:layout_marginTop="@dimen/_9sdp"
             app:layout_constraintEnd_toEndOf="@id/imgvSearchNearbyRecyclerview"

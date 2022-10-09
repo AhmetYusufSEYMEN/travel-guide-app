@@ -32,7 +32,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView5"
-                    android:text="MIGHT NEED THIS"
+                    android:text="@string/might_need_this"
                     android:layout_marginTop="@dimen/_12sdp"
                     app:layout_constraintStart_toStartOf="@+id/txvGuide"
                     app:layout_constraintTop_toBottomOf="@+id/txvGuide"
@@ -77,7 +77,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView6"
-                    android:text="NEARBY ATTARACTIONS"
+                    android:text="@string/top_pick_articles"
                     android:layout_marginTop="@dimen/_8sdp"
                     app:layout_constraintStart_toStartOf="@+id/txvGuide"
                     app:layout_constraintTop_toBottomOf="@+id/rcyclvCategory"

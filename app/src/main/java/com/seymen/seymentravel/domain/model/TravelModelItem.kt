@@ -20,6 +20,12 @@ data class TravelModelItem(
     val images: List<TravelImage>,
     @SerializedName("isBookmark")
     var isBookmark: Boolean,
+    @SerializedName("isTrip")
+    var isTrip: Boolean,
+    @SerializedName("startDate")
+    var startDate: String,
+    @SerializedName("endDate")
+    var endDate: String,
     @SerializedName("title")
     val title: String
 ): Parcelable

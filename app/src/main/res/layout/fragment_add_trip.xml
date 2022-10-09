@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/layout_background"
+        tools:context=".presentation.trip.AddTripFragment">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txvGuide2"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_trip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvGuide2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/save"
+            android:textSize="@dimen/_12ssp"
+            app:backgroundTint="@color/pink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtxFinishDate" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtxStartDate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/searchview_background"
+            android:drawableStart="@drawable/calendar"
+            android:drawablePadding="@dimen/_8sdp"
+            android:focusable="false"
+            android:hint="@string/start_date"
+            android:inputType="none"
+            android:paddingStart="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectedTripName" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtxFinishDate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:background="@drawable/searchview_background"
+            android:drawableStart="@drawable/calendar"
+            android:hint="@string/finish_date"
+            android:inputType="none"
+            android:focusable="false"
+            android:drawablePadding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:paddingStart="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtxStartDate" />
+
+        <TextView
+            android:id="@+id/tvSelectedTripName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:gravity="center"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

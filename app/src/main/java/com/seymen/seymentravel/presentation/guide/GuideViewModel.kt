@@ -85,7 +85,6 @@ class GuideViewModel  @Inject constructor(
                     is Resource.Success -> {
                         loadingState.value = false
                         _guideInfo.value = result.data!!
-
                     }
                     is Resource.Error -> {
                         loadingState.value = false

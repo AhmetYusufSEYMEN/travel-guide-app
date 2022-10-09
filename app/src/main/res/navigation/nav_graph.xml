@@ -13,12 +13,20 @@
             android:id="@+id/action_splashFragment_to_onBoardFragment"
             app:destination="@id/onBoardFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/onBoardFragment"
@@ -29,7 +37,11 @@
             android:id="@+id/action_onBoardFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/onBoardFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -38,7 +50,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -56,10 +72,19 @@
         tools:layout="@layout/fragment_guide">
         <action
             android:id="@+id/action_guideFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_guideFragment_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
+            app:destination="@id/searchResultFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/tripFragment"
@@ -68,7 +93,18 @@
         tools:layout="@layout/fragment_trip">
         <action
             android:id="@+id/action_tripFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_tripFragment_to_addTripFragment"
+            app:destination="@id/addTripFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -77,10 +113,18 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
+            app:destination="@id/searchResultFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/allFragment"
@@ -89,7 +133,11 @@
         tools:layout="@layout/fragment_all">
         <action
             android:id="@+id/action_allFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/flightsFragment"
@@ -98,7 +146,11 @@
         tools:layout="@layout/fragment_flights" >
         <action
             android:id="@+id/action_flightsFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/hotelsFragment"
@@ -107,7 +159,11 @@
         tools:layout="@layout/fragment_hotels" >
         <action
             android:id="@+id/action_hotelsFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/transportationsFragment"
@@ -116,7 +172,11 @@
         tools:layout="@layout/fragment_transportations" >
         <action
             android:id="@+id/action_transportationsFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
@@ -127,4 +187,9 @@
             android:name="source"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/addTripFragment"
+        android:name="com.seymen.seymentravel.presentation.trip.AddTripFragment"
+        android:label="AddTripFragment"
+        tools:layout="@layout/fragment_add_trip"/>
 </navigation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="let_s_go">Let\'s Go!</string>
+    <string name="let_s_go">Hadi Gidelim!</string>
     <string name="flights">Uçuşlar</string>
     <string name="hotels">Oteller</string>
     <string name="cars">Arabalar</string>
@@ -11,20 +11,28 @@
     <string name="all">Hepsi</string>
     <string name="transportation">Ulaşım</string>
     <string name="deals">FIRSATLAR</string>
-    <string name="search">Search</string>
-    <string name="trip_plan">Trip Plan</string>
-    <string name="where_next">Where next?</string>
+    <string name="search">Ara</string>
+    <string name="trip_plan">Gezi Planla</string>
+    <string name="where_next">Sırada neresi var?</string>
     <string name="trips">Geziler</string>
     <string name="bookmark">Kaydedilenler</string>
-    <string name="guide">Guide</string>
+    <string name="guide">Rehber</string>
     <string name="positive_button_ok">Tamam</string>
     <string name="error">Hata</string>
-    <string name="coming_soon">Coming Soon</string>
-    <string name="search_guide_text">A country, a city, a place... or anything</string>
+    <string name="coming_soon">Çok Yakında</string>
+    <string name="search_guide_text">Ülke, şehir... veya herhangi bir şey</string>
     <string name="tst_connct">Lütfen internet bağlantınızı kontrol ediniz! Uygulama kapatılıyor.</string>
-    <string name="add_bookmark">Add Bookmark</string>
-    <string name="result">Result</string>
-    <string name="see_all">See All</string>
-    <string name="no_result">Sorry! No results found</string>
-    <string name="bookmarks">Bookmarks</string>
+    <string name="add_bookmark">Kaydedilenlere Ekle</string>
+    <string name="result">Sonuçlar</string>
+    <string name="see_all">Hepsini Gör</string>
+    <string name="no_result">Üzgünüm! Hiçbir sonuç bulunamadı!</string>
+    <string name="bookmarks">Kaydedilenler</string>
+    <string name="finish_date">Bitiş tarihi</string>
+    <string name="start_date">Başlama tarihi</string>
+    <string name="save">Kaydet</string>
+    <string name="add_trip">Seyahat Ekle</string>
+    <string name="might_need_this">BUNA İHTİYAÇ OLABİLİR</string>
+    <string name="nearby_attaractions">YAKINDAKİ YERLER</string>
+    <string name="top_destinations">GİDİLECEK EN İYİ YERLER</string>
+    <string name="top_pick_articles">EN ÇOK TERCİH EDİLEN MAKALELER</string>
 </resources>
