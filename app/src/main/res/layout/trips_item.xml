@@ -51,7 +51,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvTripTitle"
-                android:text="@{tripsBinding.startDate + `, `+ tripsBinding.endDate}" />
+                android:text="@{tripsBinding.startDate + ` --- `+ tripsBinding.endDate}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txvItemCount"

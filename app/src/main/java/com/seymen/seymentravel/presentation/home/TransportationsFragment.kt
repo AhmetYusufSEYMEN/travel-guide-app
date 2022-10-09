@@ -20,7 +20,7 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
 
     private var _binding: FragmentTransportationsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel : AllViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
     private lateinit var  filterFlight: List<TravelModelItem>
 
 
@@ -43,19 +43,19 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
 
         binding.transportationRcyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        allViewModel.getDealsInfo()
+        homeViewModel.getDealsInfo()
 
-        allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
-             filterFlight = it.filter { it.category == "transportation" }
+            filterFlight = it.filter { it.category == "transportation" }
             binding.transportationRcyclerView.adapter =
                 DealsRecyclerViewAdapter(filterFlight, this)
         }
-        allViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
+        homeViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        allViewModel.errorState.observe(viewLifecycleOwner) {
+        homeViewModel.errorState.observe(viewLifecycleOwner) {
             AlertDialogHelper.createSimpleAlertDialog(requireContext(), getString(R.string.error), it, resources.getString(R.string.positive_button_ok))
         }
     }
@@ -65,15 +65,13 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
     }
 
     override fun onItemBookmarkClickListener(position: Int) {
-        Toast.makeText(requireContext(), "bookmark tıklandı id:${position+1}", Toast.LENGTH_SHORT).show()
         filterFlight[position].isBookmark = true
-        allViewModel.updateTravelInfo(filterFlight[position])
+        homeViewModel.updateTravelInfo(filterFlight[position])
     }
 
     private fun openDetailFragment(clickedId: String) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(clickedId)
         findNavController().navigate(action)
-
     }
 
     override fun onDestroy() {

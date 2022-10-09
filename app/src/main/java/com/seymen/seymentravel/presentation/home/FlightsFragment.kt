@@ -18,7 +18,7 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
 
     private var _binding: FragmentFlightsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel : AllViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,18 +38,18 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
     private fun setupObservers() {
 
         binding.flightRcyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        allViewModel.getDealsInfo()
+        homeViewModel.getDealsInfo()
 
-        allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
             val filterFlight = it.filter { it.category == "flight" }
             binding.flightRcyclerView.adapter = DealsRecyclerViewAdapter(filterFlight,this)
         }
-        allViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
+        homeViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        allViewModel.errorState.observe(viewLifecycleOwner){
+        homeViewModel.errorState.observe(viewLifecycleOwner){
             AlertDialogHelper.createSimpleAlertDialog(requireContext(),getString(R.string.error),it,resources.getString(R.string.positive_button_ok))
         }
 

@@ -19,7 +19,7 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
     private var _binding: FragmentAllBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel : AllViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
     private lateinit var allList: ArrayList<TravelModelItem>
     private var updatedPosition = 0
     private  lateinit var adapter: DealsRecyclerViewAdapter
@@ -43,9 +43,9 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
         binding.allRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        allViewModel.getDealsInfo()
+        homeViewModel.getDealsInfo()
 
-        allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
             allList = it.filter { it.category == "flight" || it.category == "hotel" || it.category == "transportation" } as ArrayList<TravelModelItem>
             adapter = DealsRecyclerViewAdapter(allList, this)
@@ -53,20 +53,20 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
         }
 
-        allViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
+        homeViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
 
         }
 
-        allViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
+        homeViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
             if (isSuccess){
                 allList.removeAt(updatedPosition)
-               allList.add(updatedPosition,allViewModel.itemUpdated.value!!)
+               allList.add(updatedPosition,homeViewModel.itemUpdated.value!!)
                 adapter.notifyDataSetChanged() // refresh
             }
         }
 
-        allViewModel.errorState.observe(viewLifecycleOwner) {
+        homeViewModel.errorState.observe(viewLifecycleOwner) {
             AlertDialogHelper.createSimpleAlertDialog(requireContext(), getString(R.string.error), it, resources.getString(R.string.positive_button_ok))
         }
 
@@ -82,7 +82,7 @@ class AllFragment : Fragment(), IOnListItemClickListener {
              true ->allList[position].isBookmark = false
          }
         updatedPosition = position
-        allViewModel.updateTravelInfo(allList[position])
+        homeViewModel.updateTravelInfo(allList[position])
     }
 
     private fun openDetailFragment(clickedId: String) {

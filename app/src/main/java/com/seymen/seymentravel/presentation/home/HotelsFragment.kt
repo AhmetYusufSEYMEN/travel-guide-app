@@ -21,9 +21,8 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
 
     private var _binding: FragmentHotelsBinding? = null
     private val binding get() = _binding!!
-    private val allViewModel : AllViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
     private lateinit var filterHotel: List<TravelModelItem>
-    private lateinit var isBookmarkBtn : DealsRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,18 +42,18 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
     private fun setupObservers() {
 
         binding.hotelsRcyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        allViewModel.getDealsInfo()
+        homeViewModel.getDealsInfo()
 
-        allViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
 
             filterHotel = it.filter { it.category == "hotel" }
             binding.hotelsRcyclerView.adapter = DealsRecyclerViewAdapter(filterHotel,this)
         }
-        allViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
+        homeViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        allViewModel.errorState.observe(viewLifecycleOwner){
+        homeViewModel.errorState.observe(viewLifecycleOwner){
             AlertDialogHelper.createSimpleAlertDialog(requireContext(),getString(R.string.error),it,resources.getString(R.string.positive_button_ok))
         }
 
@@ -65,14 +64,12 @@ class HotelsFragment : Fragment() , IOnListItemClickListener{
     }
 
     override fun onItemBookmarkClickListener(position: Int) {
-        Toast.makeText(requireContext(), "bookmark tıklandı $position", Toast.LENGTH_SHORT).show()
-        Log.v("bookmark",filterHotel[position].isBookmark.toString())
 
         when(filterHotel[position].isBookmark){
             false-> filterHotel[position].isBookmark = true
             true -> filterHotel[position].isBookmark = false
         }
-        allViewModel.updateTravelInfo(filterHotel[position])
+        homeViewModel.updateTravelInfo(filterHotel[position])
     }
 
     private fun openDetailFragment(clickedId:String) {

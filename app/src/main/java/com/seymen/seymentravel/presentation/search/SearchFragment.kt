@@ -49,6 +49,11 @@ class SearchFragment : Fragment() , IOnItemClickListener {
 
         setupObservers()
 
+        setupListeners()
+
+    }
+
+    private fun setupListeners() {
         binding.edtxSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val action = SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(binding.edtxSearch.text.toString().lowercase()) //.lowercase()
@@ -57,7 +62,6 @@ class SearchFragment : Fragment() , IOnItemClickListener {
             }
             return@setOnEditorActionListener false
         }
-
     }
 
     private fun setupObservers() {

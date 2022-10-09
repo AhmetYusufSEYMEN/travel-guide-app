@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         NavBarHelper.navBarIsVisible(requireActivity())
         activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
         setViewPager()
@@ -63,7 +64,7 @@ class HomeFragment : Fragment() {
         /**
          * ---IMPORTANT---
          * I could create a separate query for each section in the Deals section (GET - Repo - Use_Case - ViewModel).
-         * But Mock Api's search feature filters all data.
+         * But Mock Api's search feature filters in ALL data.
          * So I filtered the results myself as it was returning irrelevant results.
          * The same goes for the Search Fragment.
          */

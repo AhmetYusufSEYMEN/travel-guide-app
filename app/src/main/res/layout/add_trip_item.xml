@@ -57,7 +57,6 @@
             app:layout_constraintEnd_toEndOf="@+id/imgvAddTrip"
             app:layout_constraintStart_toStartOf="@+id/imgvAddTrip"
             app:layout_constraintTop_toTopOf="@+id/imgvAddTrip">
-            <!--android:visibility="gone"-->
 
             <ImageView
                 android:id="@+id/imgvTick"

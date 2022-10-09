@@ -53,8 +53,8 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "dd.MM.yyyy" // mention the format you need
-                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
                 binding.edtxStartDate.setText(sdf.format(cal.time).toString())
                 selectedTravelModelItem.startDate = binding.edtxStartDate.text.toString()
 
@@ -70,8 +70,8 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "dd.MM.yyyy" // mention the format you need
-                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
                 binding.edtxFinishDate.setText(sdf.format(cal.time).toString())
                 selectedTravelModelItem.endDate = binding.edtxFinishDate.text.toString()
 
@@ -90,7 +90,7 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
                 tripsViewModel.updateTravelInfo(selectedTravelModelItem)
             }
         }
-    }     //KANKA BEN KAÇTIM , KONUŞTUPĞUMUZ GİBİ EKLİYOR SLİYOR VSVS . GÖRÜŞÜRÜZ İYİ GECELEER
+    }
 
     private fun setupUI() {
 
