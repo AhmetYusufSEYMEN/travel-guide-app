@@ -6,7 +6,7 @@ It is a travel guide application where we can have information about places to g
 ## Used Technologies 👨‍💻
  - MVVM with Clean Architecture
  - Navigation - Safe Args
- - Kotlin coroutines on Android
+ - Kotlin coroutines(Flow) on Android
  - Retrofit2
  - Dependency injection with Hilt
  - Okhttp
