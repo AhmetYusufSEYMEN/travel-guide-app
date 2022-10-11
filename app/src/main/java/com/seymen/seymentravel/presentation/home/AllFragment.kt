@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -39,15 +40,24 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (::adapter.isInitialized){
+            homeViewModel.getCategoryAllInfo()
+            adapter.notifyDataSetChanged()
+        }
+    }
+
     private fun setupObservers() {
 
         binding.allRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        homeViewModel.getDealsInfo()
 
-        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.getCategoryAllInfo()
 
-            allList = it.filter { it.category == "flight" || it.category == "hotel" || it.category == "transportation" } as ArrayList<TravelModelItem>
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) {
+
+            allList = it as ArrayList<TravelModelItem>
             adapter = DealsRecyclerViewAdapter(allList, this)
             binding.allRecyclerView.adapter = adapter
 
@@ -55,13 +65,12 @@ class AllFragment : Fragment(), IOnListItemClickListener {
 
         homeViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-
         }
 
         homeViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
             if (isSuccess){
                 allList.removeAt(updatedPosition)
-               allList.add(updatedPosition,homeViewModel.itemUpdated.value!!)
+                allList.add(updatedPosition,homeViewModel.itemUpdated.value!!)
                 adapter.notifyDataSetChanged() // refresh
             }
         }

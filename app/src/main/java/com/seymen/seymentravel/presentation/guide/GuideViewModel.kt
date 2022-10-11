@@ -17,10 +17,11 @@ class GuideViewModel  @Inject constructor(
     private val travelInfoUseCase: TravelInfoUseCase,
 ) : ViewModel() {
 
-    //cached
-    private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
-    //public
-    val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
+    private val _topPickInfo = MutableLiveData<List<TravelModelItem>>()
+    val topPickInfo: MutableLiveData<List<TravelModelItem>> = _topPickInfo
+
+    private val _mightNeedInfo = MutableLiveData<List<TravelModelItem>>()
+    val mightNeedInfo: MutableLiveData<List<TravelModelItem>> = _mightNeedInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
     val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
@@ -33,16 +34,38 @@ class GuideViewModel  @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getData() {
+
+
+    fun getMightNeedInfo() {
         viewModelScope.launch {
-            travelInfoUseCase.getTravelInfo().collect { result ->
+            travelInfoUseCase.getMightNeedInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
                     }
                     is Resource.Success -> {
                         loadingState.value = false
-                        _travelInfo.value = result.data!!
+                        _mightNeedInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getTopPickInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getTopPickInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _topPickInfo.value = result.data!!
                     }
                     is Resource.Error -> {
                         loadingState.value = false
@@ -55,7 +78,7 @@ class GuideViewModel  @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateWhatYouWant(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

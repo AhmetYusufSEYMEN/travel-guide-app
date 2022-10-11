@@ -1,6 +1,7 @@
 package com.seymen.seymentravel.presentation.trip
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.seymen.seymentravel.presentation.guide.*
 import com.seymen.seymentravel.utils.AlertDialogHelper
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class TripsFragment : Fragment(), IOnTripItemClickListener {
@@ -40,26 +42,34 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
 
         setupUI()
         setupObservers()
+        setupListeners()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::tripsAdapter.isInitialized) tripsAdapter.notifyDataSetChanged()
+    }
+
+    private fun setupUI() {
+        binding.rcyclTrips.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun setupListeners() {
         binding.floatingActionButton.setOnClickListener {
             val action = TripFragmentDirections.actionTripFragmentToAddTripFragment()
             findNavController().navigate(action)
         }
-
     }
 
-    private fun setupUI() {
-
-        binding.rcyclTrips.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-    }
     private fun setupObservers() {
 
-        tripsViewModel.getData()
+        tripsViewModel.getTripTrueInfo()
 
-        tripsViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        tripsViewModel.isTripInfo.observe(viewLifecycleOwner) {
 
-            tripsList = it.filter { it.isTrip } as ArrayList<TravelModelItem>
+            tripsList = it as ArrayList<TravelModelItem>
             tripsAdapter = TripsRecyclerViewAdapter(tripsList, this)
 
             binding.rcyclTrips.adapter = tripsAdapter
@@ -80,14 +90,13 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
         tripsViewModel.isUpdateSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 tripsList.removeAt(updatedPosition)
+                Log.v("position12", "update: $updatedPosition")
                 tripsAdapter.notifyDataSetChanged() // refresh
             }
         }
     }
 
-    override fun onListItemClickListener(clickedId: String) {
-
-    }
+    override fun onListItemClickListener(clickedId: String) {}
 
     override fun onItemTripClickListener(position: Int) {
 
@@ -96,15 +105,12 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
         tripsList[position].endDate = ""
 
         updatedPosition = position
+        Log.v("position12", "Click: $updatedPosition")
         tripsViewModel.updateTravelInfo(tripsList[position])
         tripsAdapter.notifyItemChanged(position)
-
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (::tripsAdapter.isInitialized) tripsAdapter.notifyDataSetChanged()
-    }
+
 
     override fun onDestroy() {
         _binding = null

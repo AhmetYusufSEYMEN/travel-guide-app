@@ -11,9 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        >
+        android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/topPickCardView"
@@ -70,8 +68,8 @@
 
         <ImageButton
             android:id="@+id/imgBtnAddBookmark"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:translationZ="10dp"
             android:layout_marginEnd="@dimen/_10sdp"

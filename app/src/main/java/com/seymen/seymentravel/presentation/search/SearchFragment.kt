@@ -43,14 +43,17 @@ class SearchFragment : Fragment() , IOnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        NavBarHelper.navBarIsVisible(requireActivity())
-
-        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
-
+        setupUI()
         setupObservers()
-
         setupListeners()
 
+    }
+
+    private fun setupUI() {
+        NavBarHelper.navBarIsVisible(requireActivity())
+        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
+        binding.rcyclvTopDestination.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rcyclvNearbyAttr.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     private fun setupListeners() {
@@ -66,21 +69,25 @@ class SearchFragment : Fragment() , IOnItemClickListener {
 
     private fun setupObservers() {
 
-        binding.rcyclvTopDestination.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rcyclvNearbyAttr.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        searchViewModel.getTopDestinationInfo()
+        searchViewModel.topDestInfo.observe(viewLifecycleOwner) {
 
-        searchViewModel.getData()
-
-        searchViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
-
-            searchTopDestList = it.filter { it.category == "topdestination" } as ArrayList<TravelModelItem>
+            searchTopDestList = it as ArrayList<TravelModelItem>
             topDestadapter = TopDestinationRecyclerViewAdapter(searchTopDestList, this)
 
-            searchNearbyList = it.filter { it.category =="nearby" } as ArrayList<TravelModelItem>
+            binding.rcyclvTopDestination.adapter = topDestadapter
+
+            binding.swipe.isRefreshing = false
+
+        }
+
+        searchViewModel.getNearbyInfo()
+        searchViewModel.nearByInfo.observe(viewLifecycleOwner) {
+
+
+            searchNearbyList = it as ArrayList<TravelModelItem>
             nearbyAttradapter = NearbyAttrRecyclerViewAdapter(searchNearbyList,this)
 
-
-            binding.rcyclvTopDestination.adapter = topDestadapter
             binding.rcyclvNearbyAttr.adapter = nearbyAttradapter
 
             binding.swipe.isRefreshing = false
@@ -107,7 +114,8 @@ class SearchFragment : Fragment() , IOnItemClickListener {
             }
         }
         binding.swipe.setOnRefreshListener {
-            searchViewModel.getData()
+            searchViewModel.getTopDestinationInfo()
+            searchViewModel.getNearbyInfo()
         }
     }
 

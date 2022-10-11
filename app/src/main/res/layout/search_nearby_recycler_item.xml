@@ -56,8 +56,8 @@
 
         <ImageButton
             android:id="@+id/imgBtnAddBookmark"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
             android:background="@android:color/transparent"
             android:src="@drawable/round_bookmark_unchecked"
             android:scaleType="fitXY"
@@ -66,30 +66,21 @@
             app:layout_constraintEnd_toEndOf="@id/imgvSearchNearbyRecyclerview"
             app:layout_constraintTop_toTopOf="@+id/imgvSearchNearbyRecyclerview" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="@dimen/_54sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:background="@drawable/view_rounder"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintStart_toStartOf="@+id/imgvSearchNearbyRecyclerview"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{nearbyAttrBinding.city}"
             android:textColor="@color/white"
+            android:background="@drawable/view_rounder"
+            android:padding="@dimen/_4sdp"
             android:textSize="@dimen/_10ssp"
             android:textAllCaps="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_14sdp"
             android:fontFamily="@font/source_sans_pro_semibold"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view" />
+            app:layout_constraintStart_toStartOf="@+id/imgvSearchNearbyRecyclerview"
+            app:layout_constraintTop_toTopOf="parent"  />
 
         <FrameLayout
             android:id="@+id/frmLayoutProgressbar"

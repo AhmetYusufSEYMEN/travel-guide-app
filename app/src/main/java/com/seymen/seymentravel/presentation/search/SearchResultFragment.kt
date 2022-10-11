@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.FragmentDetailBinding
 import com.seymen.seymentravel.databinding.FragmentSearchResultBinding
-import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.utils.AlertDialogHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +20,6 @@ class SearchResultFragment : Fragment() {
     private var _binding : FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
     private val searchViewModel : SearchViewModel by viewModels()
-    private lateinit var searchList : ArrayList<TravelModelItem>
     private val args: SearchResultFragmentArgs by navArgs()
     private lateinit var searchingWords : String
     override fun onCreateView(
@@ -36,35 +34,46 @@ class SearchResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         searchingWords = args.source
+        binding.rcyclResult.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         setupObservers()
+        setupListeners()
 
+    }
+
+    private fun setupListeners() {
+        binding.backButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupObservers() {
 
-        binding.rcyclResult.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        if (searchingWords == "ComingFromSeeAll"){
 
-        searchViewModel.getData()
+            searchViewModel.getMightNeedInfo()
+            searchViewModel.mightNeedInfo.observe(viewLifecycleOwner) {
 
-        searchViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
-
-            if (searchingWords == "ComingFromSeeAll"){
                 binding.txvTitle.text = getString(R.string.see_all)
-                val filterMightNeed = it.filter { it.category == "mightneed" }
-                binding.rcyclResult.adapter = SearchResultRecyclerViewAdapter(filterMightNeed)
+
+                binding.rcyclResult.adapter = SearchResultRecyclerViewAdapter(it)
             }
-            else {
-                val filterSearchingWords = it.filter { it.country.lowercase() == searchingWords } //lowercase()
-                    binding.txvTitle.text = getString(R.string.result)
-                    if(filterSearchingWords.isNotEmpty()){
-                        binding.rcyclResult.adapter = SearchResultRecyclerViewAdapter(filterSearchingWords)
-                    }
-                    else{
-                        binding.txvTitle.text = getString(R.string.no_result)
-                        binding.imgvNotFound.visibility = View.VISIBLE
-                        binding.rcyclResult.visibility = View.GONE
-                    }
+        }
+        else {
+
+            searchViewModel.getAllInfo()
+            searchViewModel.allDataInfo.observe(viewLifecycleOwner) { it ->
+
+                val filterSearchingWords = it.filter { it.country.lowercase() == searchingWords }
+                binding.txvTitle.text = getString(R.string.result)
+                if(filterSearchingWords.isNotEmpty()){
+                    binding.rcyclResult.adapter = SearchResultRecyclerViewAdapter(filterSearchingWords)
+                }
+                else{
+                    binding.txvTitle.text = getString(R.string.no_result)
+                    binding.imgvNotFound.visibility = View.VISIBLE
+                    binding.rcyclResult.visibility = View.GONE
+                }
             }
         }
 

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +20,9 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
     private var _binding: FragmentTransportationsBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel : HomeViewModel by viewModels()
-    private lateinit var  filterFlight: List<TravelModelItem>
+    private lateinit var transportationList: ArrayList<TravelModelItem>
+    private var updatedPosition = 0
+    private  lateinit var adapter: DealsRecyclerViewAdapter
 
 
     override fun onCreateView(
@@ -39,20 +40,37 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (::adapter.isInitialized){
+            homeViewModel.getCategoryTransportationInfo()
+            adapter.notifyDataSetChanged()
+        }
+    }
+
     private fun setupObservers() {
 
         binding.transportationRcyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        homeViewModel.getDealsInfo()
 
-        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.getCategoryTransportationInfo()
 
-            filterFlight = it.filter { it.category == "transportation" }
-            binding.transportationRcyclerView.adapter =
-                DealsRecyclerViewAdapter(filterFlight, this)
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) {
+
+            transportationList = it as ArrayList<TravelModelItem>
+            adapter = DealsRecyclerViewAdapter(transportationList, this)
+            binding.transportationRcyclerView.adapter = adapter
         }
         homeViewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        homeViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
+            if (isSuccess){
+                transportationList.removeAt(updatedPosition)
+                transportationList.add(updatedPosition,homeViewModel.itemUpdated.value!!)
+                adapter.notifyDataSetChanged() // refresh
+            }
         }
 
         homeViewModel.errorState.observe(viewLifecycleOwner) {
@@ -65,8 +83,12 @@ class TransportationsFragment : Fragment() ,IOnListItemClickListener {
     }
 
     override fun onItemBookmarkClickListener(position: Int) {
-        filterFlight[position].isBookmark = true
-        homeViewModel.updateTravelInfo(filterFlight[position])
+        when(transportationList[position].isBookmark){
+            false->transportationList[position].isBookmark = true
+            true ->transportationList[position].isBookmark = false
+        }
+        updatedPosition = position
+        homeViewModel.updateTravelInfo(transportationList[position])
     }
 
     private fun openDetailFragment(clickedId: String) {

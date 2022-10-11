@@ -42,17 +42,20 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        setupUI()
+        setInfoObserver()
+        setupListeners()
+
+    }
+
+    private fun setupUI() {
         mainActivity = requireActivity() as MainActivity
         mainActivity.bottomNavigationView.visibility = View.GONE
 
         travelDetailID = args.detailID
 
         activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
-
-        setInfoObserver()
-
-        setupListeners()
-
     }
 
     private fun setupListeners() {

@@ -14,7 +14,7 @@ class TravelInfoUseCase @Inject constructor(
     private val iTravelInfoRepository: ITravelInfoRepository
 ) {
 
-    suspend fun getTravelInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+    suspend fun getAllInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
         try {
             val data = iTravelInfoRepository.getTravelInfo()
 
@@ -29,7 +29,157 @@ class TravelInfoUseCase @Inject constructor(
         }
     }
 
-    suspend fun getTravelInfoDetailsById(detailId:String): Flow<Resource<TravelModelItem>> = flow {
+    suspend fun getCategoryAllInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getCategoryAllInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+    suspend fun getCategoryFlightInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getCategoryFlightInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getCategoryHoteltInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getCategoryHoteltInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getCategoryTransportationInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getCategoryTransportationInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getTopDestinationInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getTopDestinationInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getNearbyInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getNearbyInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getMightNeedInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getMightNeedInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getTopPickInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getTopPickInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getBookmarkTrueInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getBookmarkTrueInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+    suspend fun getTripTrueInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
+        try {
+            val data = iTravelInfoRepository.getTripTrueInfo()
+
+            // loading
+            emit(Resource.Loading())
+            emit(Resource.Success(data))
+
+        }catch (e: HttpException){
+            emit(Resource.Error(e.localizedMessage))
+        }catch (e: IOException){
+            emit(Resource.Error(e.localizedMessage))
+        }
+    }
+
+
+    suspend fun getInfoDetailsById(detailId:String): Flow<Resource<TravelModelItem>> = flow {
         try {
             val data = iTravelInfoRepository.getTravelInfoDetailsById(detailId)
             // loading
@@ -43,9 +193,9 @@ class TravelInfoUseCase @Inject constructor(
         }
     }
 
-    suspend fun updateBookMarkStatus(isBookmarkPost: TravelModelItem): Flow<Resource<TravelModelItem>> = flow {
+    suspend fun updateWhatYouWant(updateWhatYouWant: TravelModelItem): Flow<Resource<TravelModelItem>> = flow {
         try {
-            val data = iTravelInfoRepository.updateTravelInfo(isBookmarkPost,isBookmarkPost.id)
+            val data = iTravelInfoRepository.updateTravelInfo(updateWhatYouWant,updateWhatYouWant.id)
 
             // loading
             emit(Resource.Loading())

@@ -16,10 +16,17 @@ class SearchViewModel @Inject constructor(
     private val travelInfoUseCase: TravelInfoUseCase,
 ) : ViewModel() {
 
-    //cached
-    private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
-    //public
-    val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
+    private val _allDataInfo = MutableLiveData<List<TravelModelItem>>()
+    val allDataInfo: MutableLiveData<List<TravelModelItem>> = _allDataInfo
+
+    private val _mightNeedInfo = MutableLiveData<List<TravelModelItem>>()
+    val mightNeedInfo: MutableLiveData<List<TravelModelItem>> = _mightNeedInfo
+
+    private val _topDestInfo = MutableLiveData<List<TravelModelItem>>()
+    val topDestInfo: MutableLiveData<List<TravelModelItem>> = _topDestInfo
+
+    private val _nearByInfo = MutableLiveData<List<TravelModelItem>>()
+    val nearByInfo: MutableLiveData<List<TravelModelItem>> = _nearByInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
     val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
@@ -28,16 +35,76 @@ class SearchViewModel @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getData() {
+    fun getAllInfo() {
         viewModelScope.launch {
-            travelInfoUseCase.getTravelInfo().collect { result ->
+            travelInfoUseCase.getAllInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
                     }
                     is Resource.Success -> {
                         loadingState.value = false
-                        _travelInfo.value = result.data!!
+                        _allDataInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getMightNeedInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getMightNeedInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _mightNeedInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getTopDestinationInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getTopDestinationInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _topDestInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getNearbyInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getNearbyInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _nearByInfo.value = result.data!!
                     }
                     is Resource.Error -> {
                         loadingState.value = false
@@ -50,7 +117,7 @@ class SearchViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateWhatYouWant(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

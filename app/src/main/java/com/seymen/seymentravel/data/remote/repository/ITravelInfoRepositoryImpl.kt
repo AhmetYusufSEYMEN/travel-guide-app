@@ -12,6 +12,47 @@ class ITravelInfoRepositoryImpl @Inject constructor(private val apiService: ApiS
         return apiService.getTravelInfo()
     }
 
+    override suspend fun getCategoryAllInfo(): List<TravelModelItem> {
+        return apiService.getCategoryAllInfo()
+    }
+
+    override suspend fun getCategoryFlightInfo(): List<TravelModelItem> {
+        return apiService.getCategoryFlightInfo()
+    }
+
+    override suspend fun getCategoryHoteltInfo(): List<TravelModelItem> {
+        return apiService.getCategoryHotelInfo()
+    }
+
+    override suspend fun getCategoryTransportationInfo(): List<TravelModelItem> {
+        return apiService.getCategoryTransportationInfo()
+    }
+
+    override suspend fun getTopDestinationInfo(): List<TravelModelItem> {
+        return apiService.getTopDestinationInfo()
+    }
+
+    override suspend fun getNearbyInfo(): List<TravelModelItem> {
+        return apiService.getNearbyInfo()
+    }
+
+    override suspend fun getMightNeedInfo(): List<TravelModelItem> {
+        return apiService.getMightNeedInfo()
+    }
+
+    override suspend fun getTopPickInfo(): List<TravelModelItem> {
+        return apiService.getTopPickInfo()
+    }
+
+    override suspend fun getBookmarkTrueInfo(): List<TravelModelItem> {
+        return apiService.getBookmarkTrueInfo()
+    }
+
+    override suspend fun getTripTrueInfo(): List<TravelModelItem> {
+        return apiService.getTripTrueInfo()
+    }
+
+
     override suspend fun getTravelInfoDetailsById(detailId: String): TravelModelItem {
         return apiService.getTravelDetailsById(detailId)
     }

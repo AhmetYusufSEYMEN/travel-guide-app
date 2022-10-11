@@ -29,7 +29,7 @@ class DetailsViewModel @Inject constructor(
 
     fun getTravelInfoDetailsById(detailId: String) {
         viewModelScope.launch {
-            travelInfoUseCase.getTravelInfoDetailsById(detailId).collect { result ->
+            travelInfoUseCase.getInfoDetailsById(detailId).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -49,7 +49,7 @@ class DetailsViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateWhatYouWant(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

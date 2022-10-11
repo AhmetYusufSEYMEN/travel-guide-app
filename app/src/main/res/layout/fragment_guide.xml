@@ -29,7 +29,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     style="@style/title_style" />
 
-
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView5"
                     android:text="@string/might_need_this"
@@ -89,6 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />

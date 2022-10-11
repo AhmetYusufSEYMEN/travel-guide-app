@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentFlightsBinding
+import com.seymen.seymentravel.domain.model.TravelModelItem
 import com.seymen.seymentravel.utils.AlertDialogHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,9 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
     private var _binding: FragmentFlightsBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel : HomeViewModel by viewModels()
+    private lateinit var flightList: ArrayList<TravelModelItem>
+    private var updatedPosition = 0
+    private  lateinit var adapter: DealsRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,15 +39,25 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (::adapter.isInitialized){
+            homeViewModel.getCategoryFlightInfo()
+            adapter.notifyDataSetChanged()
+        }
+    }
+
     private fun setupObservers() {
 
         binding.flightRcyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        homeViewModel.getDealsInfo()
+        homeViewModel.getCategoryFlightInfo()
 
-        homeViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
+        homeViewModel.travelInfo.observe(viewLifecycleOwner) {
 
-            val filterFlight = it.filter { it.category == "flight" }
-            binding.flightRcyclerView.adapter = DealsRecyclerViewAdapter(filterFlight,this)
+            flightList = it as ArrayList<TravelModelItem>
+            adapter = DealsRecyclerViewAdapter(flightList, this)
+            binding.flightRcyclerView.adapter = adapter
+
         }
         homeViewModel.loadingState.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -53,21 +67,31 @@ class FlightsFragment : Fragment() , IOnListItemClickListener {
             AlertDialogHelper.createSimpleAlertDialog(requireContext(),getString(R.string.error),it,resources.getString(R.string.positive_button_ok))
         }
 
+        homeViewModel.isUpdateSuccess.observe(viewLifecycleOwner)  { isSuccess ->
+            if (isSuccess){
+                flightList.removeAt(updatedPosition)
+                flightList.add(updatedPosition,homeViewModel.itemUpdated.value!!)
+                adapter.notifyDataSetChanged() // refresh
+            }
+        }
+
     }
     override fun onListItemClickListener(clickedId: String) {
         openDetailFragment(clickedId)
     }
 
     override fun onItemBookmarkClickListener(position: Int) {
-        TODO("Not yet implemented") // KENDİME NOT:
-                                            // BUNLARI YOK ETMEK İÇİN BOOKMARK I GERÇEKTEN YAPMAYA GEÇTİĞİNDE:
-                                            // BOOKMARK OLAN SAYFALARA ÖZGÜ CLİCK LİSTENER AÇARSIN BURADAKİNDEN BKMRK İNTRFCSİNDEN BU KISMI SİLERSİN
+        when(flightList[position].isBookmark){
+            false->flightList[position].isBookmark = true
+            true ->flightList[position].isBookmark = false
+        }
+        updatedPosition = position
+        homeViewModel.updateTravelInfo(flightList[position])
     }
 
     private fun openDetailFragment(clickedId:String) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(clickedId)
         findNavController().navigate(action)
-
     }
 
     override fun onDestroy() {

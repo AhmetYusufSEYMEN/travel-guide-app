@@ -35,4 +35,6 @@
     <string name="nearby_attaractions">YAKINDAKİ YERLER</string>
     <string name="top_destinations">GİDİLECEK EN İYİ YERLER</string>
     <string name="top_pick_articles">EN ÇOK TERCİH EDİLEN MAKALELER</string>
+    <string name="be_sure_enter_info">Gerekli bilgileri girdiğinizden emin olun!</string>
+    <string name="choose_first_location">Lütfen önce yeri seçiniz</string>
 </resources>

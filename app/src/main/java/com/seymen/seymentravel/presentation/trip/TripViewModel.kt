@@ -21,6 +21,12 @@ class TripViewModel @Inject constructor(
     //public
     val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
 
+    private val _isBookmarkInfo = MutableLiveData<List<TravelModelItem>>()
+    val isBookmarkInfo: MutableLiveData<List<TravelModelItem>> = _isBookmarkInfo
+
+    private val _isTripInfo = MutableLiveData<List<TravelModelItem>>()
+    val isTripInfo: MutableLiveData<List<TravelModelItem>> = _isTripInfo
+
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
     val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
 
@@ -28,9 +34,9 @@ class TripViewModel @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getData() {
+    fun getAllInfo() {
         viewModelScope.launch {
-            travelInfoUseCase.getTravelInfo().collect { result ->
+            travelInfoUseCase.getAllInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -48,9 +54,49 @@ class TripViewModel @Inject constructor(
         }
     }
 
-    fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
+    fun getBookmarkTrueInfo() {
         viewModelScope.launch {
-            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.getBookmarkTrueInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _isBookmarkInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getTripTrueInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getTripTrueInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _isTripInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun updateTravelInfo(isTrip: TravelModelItem) {
+        viewModelScope.launch {
+            travelInfoUseCase.updateWhatYouWant(isTrip).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

@@ -35,4 +35,6 @@
     <string name="nearby_attaractions">NEARBY ATTARACTIONS</string>
     <string name="top_destinations">TOP DESTINATIONS</string>
     <string name="top_pick_articles">TOP-PICK ARTICLES</string>
+    <string name="be_sure_enter_info">Be sure to enter the required information!</string>
+    <string name="choose_first_location">Choose the location first pls</string>
 </resources>

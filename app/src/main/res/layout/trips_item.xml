@@ -68,8 +68,8 @@
 
             <ImageButton
                 android:id="@+id/imgBtnDeletetrip"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_27sdp"
+                android:layout_height="@dimen/_27sdp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/icon_delete"
                 android:scaleType="fitXY"

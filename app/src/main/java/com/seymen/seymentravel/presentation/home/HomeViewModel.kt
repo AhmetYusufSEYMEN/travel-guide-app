@@ -28,9 +28,69 @@ class HomeViewModel @Inject constructor(
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
 
-    fun getDealsInfo() {
+    fun getCategoryAllInfo() {
         viewModelScope.launch {
-            travelInfoUseCase.getTravelInfo().collect { result ->
+            travelInfoUseCase.getCategoryAllInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _travelInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getCategoryFlightInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getCategoryFlightInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _travelInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getCategoryHoteltInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getCategoryHoteltInfo().collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        loadingState.value = true
+                    }
+                    is Resource.Success -> {
+                        loadingState.value = false
+                        _travelInfo.value = result.data!!
+                    }
+                    is Resource.Error -> {
+                        loadingState.value = false
+                        errorState.value = result.message
+                    }
+                }
+            }
+        }
+    }
+
+    fun getCategoryTransportationInfo() {
+        viewModelScope.launch {
+            travelInfoUseCase.getCategoryTransportationInfo().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true
@@ -50,7 +110,7 @@ class HomeViewModel @Inject constructor(
 
     fun updateTravelInfo(isBookmarkPost: TravelModelItem) {
         viewModelScope.launch {
-            travelInfoUseCase.updateBookMarkStatus(isBookmarkPost).collect { result ->
+            travelInfoUseCase.updateWhatYouWant(isBookmarkPost).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         loadingState.value = true

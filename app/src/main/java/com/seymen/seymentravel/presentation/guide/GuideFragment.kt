@@ -42,9 +42,7 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
-
         setupObservers()
-
         setupListeners()
 
     }
@@ -83,20 +81,24 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
         }
     }
 
-
     private fun setupObservers() {
 
-        guideViewModel.getData()
+        guideViewModel.getMightNeedInfo()
+        guideViewModel.mightNeedInfo.observe(viewLifecycleOwner) { mightneed ->
 
-        guideViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
-
-            mightNeedList = it.filter { it.category == "mightneed" } as ArrayList<TravelModelItem>
+            mightNeedList = mightneed as ArrayList<TravelModelItem>
             mightNeedAdapter = MightNeedRecyclerAdapter(mightNeedList, this)
 
-            topPickList = it.filter { it.category == "toppick" } as ArrayList<TravelModelItem>
-            topPickAdapter = TopPicksRecyclerAdapter(topPickList, this)
-
             binding.rcyclvMightNeed.adapter = mightNeedAdapter
+
+            binding.swipe.isRefreshing = false
+        }
+
+        guideViewModel.getTopPickInfo()
+        guideViewModel.topPickInfo.observe(viewLifecycleOwner) { toppick ->
+
+            topPickList = toppick as ArrayList<TravelModelItem>
+            topPickAdapter = TopPicksRecyclerAdapter(topPickList, this)
 
             binding.rcyclvTopPick.adapter = topPickAdapter
 
@@ -137,8 +139,10 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
             }
         }
         binding.swipe.setOnRefreshListener {
-            guideViewModel.getData()
+            guideViewModel.getMightNeedInfo()
+            guideViewModel.getTopPickInfo()
             guideViewModel.getGuideInfo()
+
         }
     }
 

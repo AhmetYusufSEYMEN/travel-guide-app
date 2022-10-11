@@ -27,8 +27,7 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
     private lateinit var tripsList: ArrayList<TravelModelItem>
     private lateinit var selectedTravelModelItem: TravelModelItem
     private lateinit var tripsAdapter: AddTripRecyclerAdapter
-    private var updatedPosition = 0
-    var cal = Calendar.getInstance()
+    private var cal = Calendar.getInstance()
 
 
     override fun onCreateView(
@@ -48,43 +47,55 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
 
     private fun setupListeners() {
         binding.edtxStartDate.setOnClickListener{
-            DatePickerDialog(requireContext(),  DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            if(::selectedTravelModelItem.isInitialized){
+                DatePickerDialog(requireContext(),  DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    cal.set(Calendar.YEAR, year)
+                    cal.set(Calendar.MONTH, monthOfYear)
+                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "EEE, MMM d, ''yy" // mention the format you need
-                val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
-                binding.edtxStartDate.setText(sdf.format(cal.time).toString())
-                selectedTravelModelItem.startDate = binding.edtxStartDate.text.toString()
+                    val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
+                    binding.edtxStartDate.setText(sdf.format(cal.time).toString())
+                    selectedTravelModelItem.startDate = binding.edtxStartDate.text.toString()
 
-            },
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)).show()
+                },
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)).show()
+            }
+            else {
+                Toast.makeText(requireContext(), getString(R.string.choose_first_location), Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.edtxFinishDate.setOnClickListener{
-            DatePickerDialog(requireContext(),  DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            if (::selectedTravelModelItem.isInitialized){
+                DatePickerDialog(requireContext(),  DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    cal.set(Calendar.YEAR, year)
+                    cal.set(Calendar.MONTH, monthOfYear)
+                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "EEE, MMM d, ''yy" // mention the format you need
-                val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
-                binding.edtxFinishDate.setText(sdf.format(cal.time).toString())
-                selectedTravelModelItem.endDate = binding.edtxFinishDate.text.toString()
+                    val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
+                    binding.edtxFinishDate.setText(sdf.format(cal.time).toString())
+                    selectedTravelModelItem.endDate = binding.edtxFinishDate.text.toString()
 
-            },
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)).show()
+                },
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)).show()
+            }
+            else
+            {
+                Toast.makeText(requireContext(), getString(R.string.choose_first_location), Toast.LENGTH_SHORT).show()
+            }
+           
         }
 
         // update
         binding.btnAdd.setOnClickListener {
-            if (binding.tvSelectedTripName.text.toString().isEmpty()){
-                Toast.makeText(requireContext(), "Lütfen önce bir item seçin", Toast.LENGTH_SHORT).show()
+            if (binding.tvSelectedTripName.text.toString().isEmpty() ){ //|| binding.edtxStartDate.text.isNullOrEmpty() || binding.edtxFinishDate.text.isNullOrEmpty()
+                Toast.makeText(requireContext(), getString(R.string.be_sure_enter_info), Toast.LENGTH_SHORT).show()
             }else{
                 selectedTravelModelItem.isTrip = true
                 tripsViewModel.updateTravelInfo(selectedTravelModelItem)
@@ -100,13 +111,14 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
 
     private fun setupObservers() {
 
-        tripsViewModel.getData()
+        tripsViewModel.getAllInfo()
 
         tripsViewModel.travelInfo.observe(viewLifecycleOwner) { travelList ->
+
             tripsList = travelList as ArrayList<TravelModelItem>
             tripsAdapter = AddTripRecyclerAdapter(travelList, this)
             binding.recyclerView.adapter = tripsAdapter
-            //binding.recyclerView.setItemViewCacheSize(travelList.size)
+            binding.recyclerView.setItemViewCacheSize(travelList.size)
 
         }
 

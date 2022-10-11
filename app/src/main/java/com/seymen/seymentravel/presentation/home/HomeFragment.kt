@@ -33,11 +33,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUI()
+        setupListeners()
+
+    }
+
+    private fun setupUI() {
         NavBarHelper.navBarIsVisible(requireActivity())
         activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(),it) }
         setViewPager()
-        setupListeners()
-
     }
 
     private fun setupListeners() {

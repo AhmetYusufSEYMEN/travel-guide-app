@@ -36,19 +36,18 @@ class BookmarkFragment : Fragment(), IOnTripItemClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rcyclBookmark.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         setupObservers()
 
     }
 
     private fun setupObservers() {
 
-        binding.rcyclBookmark.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        tripViewModel.getBookmarkTrueInfo()
 
-        tripViewModel.getData()
+        tripViewModel.isBookmarkInfo.observe(viewLifecycleOwner) {
 
-        tripViewModel.travelInfo.observe(viewLifecycleOwner) { it ->
-
-            bookmarkList = it.filter { it.isBookmark } as ArrayList<TravelModelItem>
+            bookmarkList = it as ArrayList<TravelModelItem>
 
             if(bookmarkList.isNotEmpty()){
                 bookmarkAdapter = BookmarkRecyclerAdapter(bookmarkList,this)
