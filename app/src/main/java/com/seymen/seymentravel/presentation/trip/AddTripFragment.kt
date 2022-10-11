@@ -40,9 +40,11 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupUI()
         setupObservers()
         setupListeners()
+
     }
 
     private fun setupListeners() {
@@ -53,7 +55,7 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
                     cal.set(Calendar.MONTH, monthOfYear)
                     cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                    val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                    val myFormat = "EEE, MMM d, ''yy"
                     val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
                     binding.edtxStartDate.setText(sdf.format(cal.time).toString())
                     selectedTravelModelItem.startDate = binding.edtxStartDate.text.toString()
@@ -75,7 +77,7 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
                     cal.set(Calendar.MONTH, monthOfYear)
                     cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                    val myFormat = "EEE, MMM d, ''yy" // mention the format you need
+                    val myFormat = "EEE, MMM d, ''yy"
                     val sdf = SimpleDateFormat(myFormat, Locale("tr","TR"))
                     binding.edtxFinishDate.setText(sdf.format(cal.time).toString())
                     selectedTravelModelItem.endDate = binding.edtxFinishDate.text.toString()
@@ -94,12 +96,16 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
 
         // update
         binding.btnAdd.setOnClickListener {
-            if (binding.tvSelectedTripName.text.toString().isEmpty() ){ //|| binding.edtxStartDate.text.isNullOrEmpty() || binding.edtxFinishDate.text.isNullOrEmpty()
+            if (binding.tvSelectedTripName.text.toString().isEmpty() ){
                 Toast.makeText(requireContext(), getString(R.string.be_sure_enter_info), Toast.LENGTH_SHORT).show()
             }else{
                 selectedTravelModelItem.isTrip = true
                 tripsViewModel.updateTravelInfo(selectedTravelModelItem)
             }
+        }
+
+        binding.backButton.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
@@ -146,7 +152,6 @@ class AddTripFragment : Fragment(), IOnTripItemClickListener {
     }
 
     override fun onItemTripClickListener(position: Int) {
-      //  updatedPosition = position
         selectedTravelModelItem = tripsList[position]
         binding.tvSelectedTripName.text = selectedTravelModelItem.title
     }

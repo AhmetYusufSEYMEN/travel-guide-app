@@ -1,9 +1,12 @@
 package com.seymen.seymentravel.presentation.detail
 
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,7 +31,7 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var travelDetailID : String
     private lateinit var  travelModelItem: TravelModelItem
-
+    private var isImageFitScreen : Boolean  = false
 
 
     override fun onCreateView(
@@ -59,12 +62,35 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     }
 
     private fun setupListeners() {
-        binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
+        binding.apply {
+            backButton.setOnClickListener {
+                findNavController().navigateUp()
+            }
 
-        binding.btnAddBookmark.setOnClickListener {
-            setBookmark()
+            btnAddBookmark.setOnClickListener {
+                setBookmark()
+            }
+            enlargeButton.setOnClickListener {
+
+                when(isImageFitScreen){
+                    false ->{
+                        imgvDetail.layoutParams = (LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT))
+                        imgvDetail.adjustViewBounds = true
+                        isImageFitScreen = true
+                        backButton.visibility = View.VISIBLE
+                        detailImageRecyclerView.visibility = View.VISIBLE
+                    }
+                    true ->{
+                        imgvDetail.layoutParams = (LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT))
+                        imgvDetail.scaleType = (ImageView.ScaleType.CENTER_CROP)
+                        isImageFitScreen = false
+                        backButton.visibility = View.GONE
+                        detailImageRecyclerView.visibility = View.GONE
+
+                    }
+                }
+
+            }
         }
     }
 

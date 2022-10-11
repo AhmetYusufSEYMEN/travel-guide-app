@@ -15,13 +15,25 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/txvGuide2"
+            android:id="@+id/txvTripTitle"
             style="@style/title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_trip"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_back_button_pink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txvTripTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -31,7 +43,7 @@
             android:layout_marginTop="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvGuide2" />
+            app:layout_constraintTop_toBottomOf="@+id/txvTripTitle" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAdd"

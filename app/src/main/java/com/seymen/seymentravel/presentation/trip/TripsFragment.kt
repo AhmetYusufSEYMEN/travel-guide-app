@@ -110,8 +110,6 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
         tripsAdapter.notifyItemChanged(position)
     }
 
-
-
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
