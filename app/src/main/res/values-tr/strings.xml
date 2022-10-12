@@ -37,4 +37,5 @@
     <string name="top_pick_articles">EN ÇOK TERCİH EDİLEN MAKALELER</string>
     <string name="be_sure_enter_info">Gerekli bilgileri girdiğinizden emin olun!</string>
     <string name="choose_first_location">Lütfen önce yeri seçiniz</string>
+    <string name="press_again_exit">Uygulamadan çıkmak için tekrar basın.</string>
 </resources>

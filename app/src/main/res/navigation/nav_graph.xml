@@ -64,6 +64,9 @@
         <argument
             android:name="detailID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_fullSizeImageFragment"
+            app:destination="@id/fullSizeImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
@@ -192,4 +195,13 @@
         android:name="com.seymen.seymentravel.presentation.trip.AddTripFragment"
         android:label="AddTripFragment"
         tools:layout="@layout/fragment_add_trip"/>
+    <fragment
+        android:id="@+id/fullSizeImageFragment"
+        android:name="com.seymen.seymentravel.presentation.detail.FullSizeImageFragment"
+        android:label="FullSizeImageFragment"
+        tools:layout="@layout/fragment_full_size_image">
+        <argument
+            android:name="image_url"
+            app:argType="string" />
+    </fragment>
 </navigation>

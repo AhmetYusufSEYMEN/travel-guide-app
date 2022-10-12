@@ -96,6 +96,9 @@ class HomeFragment : Fragment() {
         customTabsIntent.launchUrl(context, Uri.parse(urlD))
 
     }
+
+
+
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

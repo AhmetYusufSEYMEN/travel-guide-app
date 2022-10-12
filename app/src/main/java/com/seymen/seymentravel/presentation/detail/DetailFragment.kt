@@ -1,12 +1,10 @@
 package com.seymen.seymentravel.presentation.detail
 
-import android.media.Image
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,9 +28,8 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     private val detailsViewModel: DetailsViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var travelDetailID : String
-    private lateinit var  travelModelItem: TravelModelItem
-    private var isImageFitScreen : Boolean  = false
-
+    private lateinit var travelModelItem: TravelModelItem
+    private lateinit var imageUrl: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +41,6 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         setupUI()
         setInfoObserver()
@@ -62,6 +58,7 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
     }
 
     private fun setupListeners() {
+
         binding.apply {
             backButton.setOnClickListener {
                 findNavController().navigateUp()
@@ -71,25 +68,8 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
                 setBookmark()
             }
             enlargeButton.setOnClickListener {
-
-                when(isImageFitScreen){
-                    false ->{
-                        imgvDetail.layoutParams = (LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT))
-                        imgvDetail.adjustViewBounds = true
-                        isImageFitScreen = true
-                        backButton.visibility = View.VISIBLE
-                        detailImageRecyclerView.visibility = View.VISIBLE
-                    }
-                    true ->{
-                        imgvDetail.layoutParams = (LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT))
-                        imgvDetail.scaleType = (ImageView.ScaleType.CENTER_CROP)
-                        isImageFitScreen = false
-                        backButton.visibility = View.GONE
-                        detailImageRecyclerView.visibility = View.GONE
-
-                    }
-                }
-
+                val action = DetailFragmentDirections.actionDetailFragmentToFullSizeImageFragment(imageUrl)
+                findNavController().navigate(action)
             }
         }
     }
@@ -103,6 +83,7 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
         detailsViewModel.travelDetailInfo.observe(viewLifecycleOwner) {
 
             travelModelItem = it
+            imageUrl = travelModelItem.images[0].url
             binding.travelDetailBinding = travelModelItem
             binding.travelBigImage = travelModelItem.images[0].url
             binding.executePendingBindings()
@@ -148,6 +129,7 @@ class DetailFragment : Fragment() ,IOnDetailClickListener{
 
     private fun setImage(clickedPosition:Int){
         binding.travelBigImage = travelModelItem.images[clickedPosition].url
+        imageUrl = travelModelItem.images[clickedPosition].url
     }
 
     override fun onDestroy() {
