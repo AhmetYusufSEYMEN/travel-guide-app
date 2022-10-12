@@ -7,7 +7,7 @@ It is a travel guide application where we can have information about places to g
  - MVVM with Clean Architecture
  - Navigation - Safe Args
  - Kotlin coroutines(Flow) on Android
- - Retrofit2
+ - Retrofit
  - Dependency injection with Hilt
  - Okhttp
  - LiveData - Observer
@@ -18,7 +18,7 @@ It is a travel guide application where we can have information about places to g
  - Recyclerview
  
  ## Preview 🎥
- <img src ="https://user-images.githubusercontent.com/55987416/194783611-478f2321-7093-47d3-8ab6-4ab9063c3573.mp4" width = 330 height = 710/>
+ <img src ="https://user-images.githubusercontent.com/55987416/195226280-49d5b77b-9ecb-492d-ac42-ce0418f0ce04.mp4" width = 330 height = 710/>
  
  ## License 📝
 
