@@ -86,8 +86,7 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            />
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/tripFragment"
@@ -146,7 +145,7 @@
         android:id="@+id/flightsFragment"
         android:name="com.seymen.seymentravel.presentation.home.FlightsFragment"
         android:label="fragment_flights"
-        tools:layout="@layout/fragment_flights" >
+        tools:layout="@layout/fragment_flights">
         <action
             android:id="@+id/action_flightsFragment_to_detailFragment"
             app:destination="@id/detailFragment"
@@ -159,7 +158,7 @@
         android:id="@+id/hotelsFragment"
         android:name="com.seymen.seymentravel.presentation.home.HotelsFragment"
         android:label="fragment_hotels"
-        tools:layout="@layout/fragment_hotels" >
+        tools:layout="@layout/fragment_hotels">
         <action
             android:id="@+id/action_hotelsFragment_to_detailFragment"
             app:destination="@id/detailFragment"
@@ -172,7 +171,7 @@
         android:id="@+id/transportationsFragment"
         android:name="com.seymen.seymentravel.presentation.home.TransportationsFragment"
         android:label="fragment_transportations"
-        tools:layout="@layout/fragment_transportations" >
+        tools:layout="@layout/fragment_transportations">
         <action
             android:id="@+id/action_transportationsFragment_to_detailFragment"
             app:destination="@id/detailFragment"
@@ -194,7 +193,7 @@
         android:id="@+id/addTripFragment"
         android:name="com.seymen.seymentravel.presentation.trip.AddTripFragment"
         android:label="AddTripFragment"
-        tools:layout="@layout/fragment_add_trip"/>
+        tools:layout="@layout/fragment_add_trip" />
     <fragment
         android:id="@+id/fullSizeImageFragment"
         android:name="com.seymen.seymentravel.presentation.detail.FullSizeImageFragment"

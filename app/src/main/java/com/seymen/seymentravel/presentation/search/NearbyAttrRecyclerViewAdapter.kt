@@ -11,10 +11,10 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.SearchNearbyRecyclerItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class NearbyAttrRecyclerViewAdapter (
+class NearbyAttrRecyclerViewAdapter(
     private var travelInfoList: List<TravelModelItem>,
     private val iOnItemClickListener: IOnItemClickListener
-) : RecyclerView.Adapter<NearbyAttrRecyclerViewAdapter.ViewHolder> () {
+) : RecyclerView.Adapter<NearbyAttrRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -40,17 +40,24 @@ class NearbyAttrRecyclerViewAdapter (
 
         }
 
-        when(travelInfoList[position].isBookmark){
-            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
-            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
+        when (travelInfoList[position].isBookmark) {
+            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_checked
+            )
+            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_unchecked
+            )
         }
     }
 
     override fun getItemCount() = travelInfoList.size
 
-    class ViewHolder (val binding: SearchNearbyRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(modelInfo : TravelModelItem){
-            binding.setVariable(BR.nearbyAttrBinding,modelInfo)
+    class ViewHolder(val binding: SearchNearbyRecyclerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(modelInfo: TravelModelItem) {
+            binding.setVariable(BR.nearbyAttrBinding, modelInfo)
             binding.executePendingBindings()
         }
     }

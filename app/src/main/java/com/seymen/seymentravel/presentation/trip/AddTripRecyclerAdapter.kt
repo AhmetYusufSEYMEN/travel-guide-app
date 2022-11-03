@@ -10,7 +10,7 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.AddTripItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class AddTripRecyclerAdapter (
+class AddTripRecyclerAdapter(
     private var travelInfoList: List<TravelModelItem>,
     private val iOnTripItemClickListener: IOnTripItemClickListener
 ) : RecyclerView.Adapter<AddTripRecyclerAdapter.ViewHolder>() {
@@ -32,18 +32,18 @@ class AddTripRecyclerAdapter (
         if (holder !in holderList) holderList.add(holder)
         holder.binding.root.setOnClickListener {
             iOnTripItemClickListener.onItemTripClickListener(position)
-            for ( item in holderList){
+            for (item in holderList) {
                 item.binding.frmLayoutTickImg.visibility = View.GONE // tümü false edildi.
             }
-            holder.binding.frmLayoutTickImg.visibility = View.VISIBLE  // sadece o anki tıklanılan item seçili olacak. diğerleri false oldu.
+            holder.binding.frmLayoutTickImg.visibility =
+                View.VISIBLE  // sadece o anki tıklanılan item seçili olacak. diğerleri false oldu.
         }
 
-      /*  if (travelInfoList[position].isTrip){
-            holder.binding.frmLayoutTickImg.visibility = View.VISIBLE
-        }*/
+        /*  if (travelInfoList[position].isTrip){
+              holder.binding.frmLayoutTickImg.visibility = View.VISIBLE
+          }*/
 
     }
-
 
 
     override fun getItemCount() = travelInfoList.size

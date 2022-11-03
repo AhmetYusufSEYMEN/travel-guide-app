@@ -28,7 +28,7 @@ data class TravelModelItem(
     var endDate: String,
     @SerializedName("title")
     val title: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class TravelImage(
@@ -42,7 +42,7 @@ data class TravelImage(
     val url: String,
     @SerializedName("width")
     val width: Int
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class GuideModelItem(
@@ -52,4 +52,4 @@ data class GuideModelItem(
     val id: String,
     @SerializedName("title")
     val title: String
-): Parcelable
+) : Parcelable

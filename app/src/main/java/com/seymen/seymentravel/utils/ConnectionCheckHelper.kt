@@ -17,14 +17,16 @@ object ConnectionCheckHelper {
         val activeNetworkInfo: NetworkInfo? = cm.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
-    fun checkNetAndClose(context: Context, activity: Activity){
-        if(!isNetworkAvailable(context)){
+
+    fun checkNetAndClose(context: Context, activity: Activity) {
+        if (!isNetworkAvailable(context)) {
             Toast.makeText(context, R.string.tst_connct, Toast.LENGTH_LONG).show()
             Handler(Looper.getMainLooper()).postDelayed(
                 {
                     activity.finish()
                     exitProcess(0)
-                }, 4000)
+                }, 4000
+            )
         }
     }
 }

@@ -11,7 +11,7 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.TopPickItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class TopPicksRecyclerAdapter (
+class TopPicksRecyclerAdapter(
     private var travelInfoList: List<TravelModelItem>,
     private val iOnGuideItemClickListener: IOnGuideItemClickListener
 ) : RecyclerView.Adapter<TopPicksRecyclerAdapter.ViewHolder>() {
@@ -40,9 +40,15 @@ class TopPicksRecyclerAdapter (
 
         }
 
-        when(travelInfoList[position].isBookmark){
-            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
-            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
+        when (travelInfoList[position].isBookmark) {
+            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_checked
+            )
+            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_unchecked
+            )
         }
     }
 

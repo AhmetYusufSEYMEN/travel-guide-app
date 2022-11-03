@@ -11,7 +11,7 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.BookmarkItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class BookmarkRecyclerAdapter (
+class BookmarkRecyclerAdapter(
     private var bookmarkInfoList: List<TravelModelItem>,
     private val iOnTripItemClickListener: IOnTripItemClickListener
 ) : RecyclerView.Adapter<BookmarkRecyclerAdapter.ViewHolder>() {
@@ -37,9 +37,15 @@ class BookmarkRecyclerAdapter (
 
         }
 
-        when(bookmarkInfoList[position].isBookmark){
-            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_checked)
-            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(holder.binding.imgBtnAddBookmark.context, R.drawable.round_bookmark_unchecked)
+        when (bookmarkInfoList[position].isBookmark) {
+            true -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_checked
+            )
+            false -> holder.binding.imgBtnAddBookmark.background = ContextCompat.getDrawable(
+                holder.binding.imgBtnAddBookmark.context,
+                R.drawable.round_bookmark_unchecked
+            )
         }
     }
 

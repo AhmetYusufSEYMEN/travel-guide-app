@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-    <variable
-        name="dealRecyclerBinding"
-        type="com.seymen.seymentravel.domain.model.TravelModelItem" />
+
+        <variable
+            name="dealRecyclerBinding"
+            type="com.seymen.seymentravel.domain.model.TravelModelItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_6sdp"
-        android:layout_marginEnd="@dimen/_6sdp"
-        >
+        android:layout_marginEnd="@dimen/_6sdp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:clickable="true"

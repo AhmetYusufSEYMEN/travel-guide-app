@@ -22,9 +22,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -37,12 +37,13 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
+
     suspend fun getCategoryFlightInfo(): Flow<Resource<List<TravelModelItem>>> = flow {
         try {
             val data = iTravelInfoRepository.getCategoryFlightInfo()
@@ -51,9 +52,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -66,9 +67,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -81,9 +82,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -96,9 +97,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -111,9 +112,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -126,9 +127,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -141,9 +142,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -156,9 +157,9 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
@@ -171,42 +172,44 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
 
 
-    suspend fun getInfoDetailsById(detailId:String): Flow<Resource<TravelModelItem>> = flow {
+    suspend fun getInfoDetailsById(detailId: String): Flow<Resource<TravelModelItem>> = flow {
         try {
             val data = iTravelInfoRepository.getTravelInfoDetailsById(detailId)
             // loading
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
-            emit(Resource.Error(e.localizedMessage))
-        }
-    }
-
-    suspend fun updateWhatYouWant(updateWhatYouWant: TravelModelItem): Flow<Resource<TravelModelItem>> = flow {
-        try {
-            val data = iTravelInfoRepository.updateTravelInfo(updateWhatYouWant,updateWhatYouWant.id)
-
-            // loading
-            emit(Resource.Loading())
-            emit(Resource.Success(data))
-
-        }catch (e: HttpException){
-            emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
+
+    suspend fun updateWhatYouWant(updateWhatYouWant: TravelModelItem): Flow<Resource<TravelModelItem>> =
+        flow {
+            try {
+                val data =
+                    iTravelInfoRepository.updateTravelInfo(updateWhatYouWant, updateWhatYouWant.id)
+
+                // loading
+                emit(Resource.Loading())
+                emit(Resource.Success(data))
+
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.localizedMessage))
+            } catch (e: IOException) {
+                emit(Resource.Error(e.localizedMessage))
+            }
+        }
 
     suspend fun getGuideInfo(): Flow<Resource<List<GuideModelItem>>> = flow {
         try {
@@ -216,13 +219,12 @@ class TravelInfoUseCase @Inject constructor(
             emit(Resource.Loading())
             emit(Resource.Success(data))
 
-        }catch (e: HttpException){
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage))
         }
     }
-
 
 
 }

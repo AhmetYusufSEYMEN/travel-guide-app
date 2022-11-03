@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="travelDetailBinding"
             type="com.seymen.seymentravel.domain.model.TravelModelItem" />
@@ -31,8 +32,7 @@
             app:shapeAppearanceOverlay="@style/roundedImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
         <!--imageUrl="@{travelDetailBinding.images.get(0).url}"-->
 
         <com.google.android.material.textview.MaterialTextView
@@ -62,8 +62,7 @@
             android:textSize="@dimen/_10ssp"
             android:textColor="@color/detail_city_txt_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txv_country"
-            />
+            app:layout_constraintTop_toBottomOf="@id/txv_country" />
         <!--android:text="@{travelDetailBinding.city + `, `+ travelDetailBinding.country}"-->
 
         <com.google.android.material.textview.MaterialTextView
@@ -118,6 +117,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imgvDetail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -127,8 +127,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnAddBookmark"

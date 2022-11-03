@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GuideViewModel  @Inject constructor(
+class GuideViewModel @Inject constructor(
     private val travelInfoUseCase: TravelInfoUseCase,
 ) : ViewModel() {
 
@@ -24,16 +24,15 @@ class GuideViewModel  @Inject constructor(
     val mightNeedInfo: MutableLiveData<List<TravelModelItem>> = _mightNeedInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
 
     private val _guideInfo = MutableLiveData<List<GuideModelItem>>()
-    val guideInfo : MutableLiveData<List<GuideModelItem>> = _guideInfo
+    val guideInfo: MutableLiveData<List<GuideModelItem>> = _guideInfo
 
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()
-
 
 
     fun getMightNeedInfo() {

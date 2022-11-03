@@ -2,40 +2,28 @@ package com.seymen.seymentravel.presentation.trip
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
-import com.seymen.seymentravel.databinding.FragmentGuideBinding
 import com.seymen.seymentravel.databinding.FragmentTripsBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
-import com.seymen.seymentravel.presentation.guide.*
+import com.seymen.seymentravel.presentation.base.BaseFragment
 import com.seymen.seymentravel.utils.AlertDialogHelper
-import com.seymen.seymentravel.utils.NavBarHelper
+import com.seymen.seymentravel.utils.Constants
+import com.seymen.seymentravel.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
-class TripsFragment : Fragment(), IOnTripItemClickListener {
+class TripsFragment : BaseFragment<FragmentTripsBinding>(R.layout.fragment_trips),
+    IOnTripItemClickListener {
 
-    private var _binding: FragmentTripsBinding? = null
-    private val binding get() = _binding!!
     private val tripsViewModel: TripViewModel by viewModels()
     private lateinit var tripsList: ArrayList<TravelModelItem>
     private lateinit var tripsAdapter: TripsRecyclerViewAdapter
     private var updatedPosition = 0
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentTripsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private lateinit var sharedPreferencesUtils: SharedPreferencesUtils
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,12 +36,15 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
 
     override fun onResume() {
         super.onResume()
-        if (::tripsAdapter.isInitialized) tripsAdapter.notifyDataSetChanged()
+        if (::tripsAdapter.isInitialized) tripsAdapter.notifyItemChanged(updatedPosition)
     }
 
     private fun setupUI() {
         binding.rcyclTrips.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        sharedPreferencesUtils = SharedPreferencesUtils(requireActivity())
+
     }
 
     private fun setupListeners() {
@@ -89,9 +80,12 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
 
         tripsViewModel.isUpdateSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                tripsList.removeAt(updatedPosition)
-                Log.v("position12", "update: $updatedPosition")
-                tripsAdapter.notifyDataSetChanged() // refresh
+                val processCheck =
+                    sharedPreferencesUtils.readDataString(Constants.PROCESS_CHECK, "0")
+                if (processCheck == "DELETE") {
+                    tripsList.removeAt(updatedPosition)
+                    tripsAdapter.notifyItemRemoved(updatedPosition)
+                }
             }
         }
     }
@@ -103,15 +97,11 @@ class TripsFragment : Fragment(), IOnTripItemClickListener {
         tripsList[position].isTrip = false
         tripsList[position].startDate = ""
         tripsList[position].endDate = ""
+        sharedPreferencesUtils.writeDataString(Constants.PROCESS_CHECK, "DELETE")
 
         updatedPosition = position
         Log.v("position12", "Click: $updatedPosition")
         tripsViewModel.updateTravelInfo(tripsList[position])
         tripsAdapter.notifyItemChanged(position)
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 }

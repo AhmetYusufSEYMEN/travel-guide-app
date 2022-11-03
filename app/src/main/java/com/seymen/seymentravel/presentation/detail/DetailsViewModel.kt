@@ -13,15 +13,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val travelInfoUseCase : TravelInfoUseCase
+    private val travelInfoUseCase: TravelInfoUseCase
 ) : ViewModel() {
     //cached
     private val _travelDetailInfo = MutableLiveData<TravelModelItem>()
+
     //public
-    val travelDetailInfo : MutableLiveData<TravelModelItem> = _travelDetailInfo
+    val travelDetailInfo: MutableLiveData<TravelModelItem> = _travelDetailInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val errorState = SingleLiveEvent<String?>()

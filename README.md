@@ -1,26 +1,32 @@
 # Travel Guide App 📱
-It is a travel guide application where we can have information about places to go. Imagine an application where we can add trips that we plan to go in the near future or that we want to go later.
- - All data is pulled or updated via API.
- - Api Link : https://6339ed03471b8c3955684422.mockapi.io/seymenapi/allList
+
+It is a travel guide application where we can have information about places to go. Imagine an
+application where we can add trips that we plan to go in the near future or that we want to go
+later.
+
+- All data is pulled or updated via API.
+- Api Link : https://6339ed03471b8c3955684422.mockapi.io/seymenapi/allList
 
 ## Used Technologies 👨‍💻
- - MVVM with Clean Architecture
- - Navigation - Safe Args
- - Kotlin coroutines(Flow) on Android
- - Retrofit
- - Dependency injection with Hilt
- - Okhttp
- - LiveData - Observer
- - Glide
- - Localization(EN-TR)
- - Data Binding
- - Swipe refresh layout
- - Recyclerview
- 
- ## Preview 🎥
+
+- MVVM with Clean Architecture
+- Navigation - Safe Args
+- Kotlin coroutines(Flow) on Android
+- Retrofit
+- Dependency injection with Hilt
+- Okhttp
+- LiveData - Observer
+- Glide
+- Localization(EN-TR)
+- Data Binding
+- Swipe refresh layout
+- Recyclerview
+
+## Preview 🎥
+
  <img src ="https://user-images.githubusercontent.com/55987416/195226280-49d5b77b-9ecb-492d-ac42-ce0418f0ce04.mp4" width = 330 height = 710/>
- 
- ## License 📝
+
+## License 📝
 
 ```
 MIT License

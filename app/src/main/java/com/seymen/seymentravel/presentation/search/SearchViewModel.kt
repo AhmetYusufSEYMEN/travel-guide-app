@@ -29,7 +29,7 @@ class SearchViewModel @Inject constructor(
     val nearByInfo: MutableLiveData<List<TravelModelItem>> = _nearByInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()

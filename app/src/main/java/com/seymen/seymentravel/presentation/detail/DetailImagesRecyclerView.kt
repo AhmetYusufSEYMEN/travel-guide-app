@@ -15,7 +15,9 @@ class DetailImagesRecyclerView(
 ) : RecyclerView.Adapter<DetailImagesRecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+        return ViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
                 R.layout.detail_recycler_item,
                 parent,
                 false
@@ -33,9 +35,10 @@ class DetailImagesRecyclerView(
 
     override fun getItemCount() = travelImagesList.size
 
-    class ViewHolder (val binding: DetailRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind( image : TravelImage){
-            binding.setVariable(BR.travelItemModel,image)
+    class ViewHolder(val binding: DetailRecyclerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(image: TravelImage) {
+            binding.setVariable(BR.travelItemModel, image)
             binding.executePendingBindings()
         }
     }

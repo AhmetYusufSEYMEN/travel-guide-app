@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_300sdp"
+            android:layout_height="@dimen/_280sdp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_140sdp"
+            android:layout_marginTop="@dimen/_120sdp"
             android:layout_marginEnd="@dimen/_100sdp"
             android:fontFamily="@font/source_sans_pro_bold"
             android:text="@string/where_s_your_next_destination"
@@ -73,8 +73,7 @@
             style="@style/banner_style"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/Guideline1"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            />
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBannerhotels"
@@ -128,15 +127,14 @@
             app:tabTextAppearance="@style/TabTextAppearanceHome"
             android:layout_marginStart="@dimen/_6sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_layout_home"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

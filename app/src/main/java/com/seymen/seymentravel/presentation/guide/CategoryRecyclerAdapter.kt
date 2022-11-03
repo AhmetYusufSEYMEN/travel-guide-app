@@ -8,7 +8,6 @@ import com.seymen.seymentravel.BR
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.CategoryItemBinding
 import com.seymen.seymentravel.domain.model.GuideModelItem
-import com.seymen.seymentravel.domain.model.TravelModelItem
 
 class CategoryRecyclerAdapter(
     private var guideInfoList: List<GuideModelItem>,

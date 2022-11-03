@@ -18,11 +18,12 @@ class HomeViewModel @Inject constructor(
 
     //cached
     private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
+
     //public
     val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()

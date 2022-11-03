@@ -8,7 +8,8 @@ class AlertDialogHelper {
     companion object {
 
         fun createSimpleAlertDialog(
-            context: Context, title: String, message: String?, positiveButtonText: String) {
+            context: Context, title: String, message: String?, positiveButtonText: String
+        ) {
             val builder = AlertDialog.Builder(context)
             if (title.isNotEmpty()) builder.setTitle(title)
             builder.setMessage(message)

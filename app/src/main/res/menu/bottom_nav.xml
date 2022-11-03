@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/homeFragment"
+    <item
+        android:id="@+id/homeFragment"
         android:title=""
         android:icon="@drawable/home_selector" />
 
-    <item android:id="@+id/searchFragment"
+    <item
+        android:id="@+id/searchFragment"
         android:title=""
-        android:icon="@drawable/search_selector"/>
+        android:icon="@drawable/search_selector" />
 
-    <item android:id="@+id/tripFragment"
+    <item
+        android:id="@+id/tripFragment"
         android:title=""
-        android:icon="@drawable/trip_selector"/>
+        android:icon="@drawable/trip_selector" />
 
-    <item android:id="@+id/guideFragment"
+    <item
+        android:id="@+id/guideFragment"
         android:title=""
-        android:icon="@drawable/guide_selector"/>
+        android:icon="@drawable/guide_selector" />
 
 </menu>

@@ -18,6 +18,7 @@ class TripViewModel @Inject constructor(
 
     //cached
     private val _travelInfo = MutableLiveData<List<TravelModelItem>>()
+
     //public
     val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
 
@@ -28,7 +29,7 @@ class TripViewModel @Inject constructor(
     val isTripInfo: MutableLiveData<List<TravelModelItem>> = _isTripInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated : MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()
@@ -115,5 +116,4 @@ class TripViewModel @Inject constructor(
             }
         }
     }
-
 }

@@ -1,27 +1,23 @@
 package com.seymen.seymentravel.presentation.guide
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.FragmentGuideBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
+import com.seymen.seymentravel.presentation.base.BaseFragment
 import com.seymen.seymentravel.utils.AlertDialogHelper
-import com.seymen.seymentravel.utils.ConnectionCheckHelper
 import com.seymen.seymentravel.utils.NavBarHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GuideFragment : Fragment(), IOnGuideItemClickListener {
+class GuideFragment : BaseFragment<FragmentGuideBinding>(R.layout.fragment_guide),
+    IOnGuideItemClickListener {
 
-    private var _binding: FragmentGuideBinding? = null
-    private val binding get() = _binding!!
     private val guideViewModel: GuideViewModel by viewModels()
     private lateinit var mightNeedList: ArrayList<TravelModelItem>
     private lateinit var topPickList: ArrayList<TravelModelItem>
@@ -29,14 +25,6 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
     private lateinit var mightNeedAdapter: MightNeedRecyclerAdapter
     private lateinit var categoryAdapter: CategoryRecyclerAdapter
     private lateinit var topPickAdapter: TopPicksRecyclerAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentGuideBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +36,7 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
     }
 
     private fun setupUI() {
-        NavBarHelper.navBarIsVisible(requireActivity())
+        NavBarHelper.navBarVisibilityChanger(requireActivity())
         binding.seeAll.paint?.isUnderlineText = true
         binding.rcyclvMightNeed.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -59,8 +47,6 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
     }
 
     private fun setupListeners() {
-
-        activity?.let { ConnectionCheckHelper.checkNetAndClose(requireContext(), it) }
 
         binding.seeAll.setOnClickListener {
             val action =
@@ -134,7 +120,7 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
             if (isSuccess) {
                 topPickList.removeAt(updatedPosition)
                 topPickList.add(updatedPosition, guideViewModel.itemUpdated.value!!)
-                topPickAdapter.notifyDataSetChanged() // refresh
+                topPickAdapter.notifyItemChanged(updatedPosition) // refresh
                 binding.swipe.isRefreshing = false
             }
         }
@@ -166,10 +152,5 @@ class GuideFragment : Fragment(), IOnGuideItemClickListener {
         updatedPosition = position
         guideViewModel.updateTravelInfo(topPickList[position])
 
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 }

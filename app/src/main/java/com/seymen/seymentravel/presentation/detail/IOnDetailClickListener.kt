@@ -1,7 +1,7 @@
 package com.seymen.seymentravel.presentation.detail
 
 interface IOnDetailClickListener {
-    fun onImageClickListener(clickedPosition:Int)
+    fun onImageClickListener(clickedPosition: Int)
 
 
 }

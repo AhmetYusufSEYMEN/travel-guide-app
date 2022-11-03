@@ -9,7 +9,7 @@ import com.seymen.seymentravel.R
 import com.seymen.seymentravel.databinding.SearchResultItemBinding
 import com.seymen.seymentravel.domain.model.TravelModelItem
 
-class SearchResultRecyclerViewAdapter (
+class SearchResultRecyclerViewAdapter(
     private var searchInfoList: List<TravelModelItem>,
 ) : RecyclerView.Adapter<SearchResultRecyclerViewAdapter.ViewHolder>() {
 

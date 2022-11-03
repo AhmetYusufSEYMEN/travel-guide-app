@@ -10,7 +10,8 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_60sdp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -62,8 +63,7 @@
                     android:background="@drawable/searchview_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rcyclvMightNeed"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/rcyclvMightNeed" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcyclvCategory"
@@ -82,16 +82,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/rcyclvCategory"
                     style="@style/txt_search_title" />
 
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcyclvTopPick"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -101,8 +102,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/seeAll"
@@ -121,11 +121,3 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>
-
-    <!-- tools:context=".presentation.guide.GuideFragment">
-    <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textView"
-            android:text="@string/guide"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/title_style" />-->

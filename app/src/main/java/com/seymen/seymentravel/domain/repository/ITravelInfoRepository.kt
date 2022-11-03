@@ -29,7 +29,7 @@ interface ITravelInfoRepository {
 
     suspend fun getTravelInfoDetailsById(detailId: String): TravelModelItem
 
-    suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id:String): TravelModelItem
+    suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id: String): TravelModelItem
 
     suspend fun getGuideInfo(): List<GuideModelItem>
 
