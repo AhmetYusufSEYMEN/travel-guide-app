@@ -65,6 +65,7 @@ class BookmarkFragment : BaseFragment<FragmentBookmarkBinding>(R.layout.fragment
             if (isSuccess) {
                 bookmarkList.removeAt(updatedPosition)
                 bookmarkAdapter.notifyItemRemoved(updatedPosition) // refresh
+                bookmarkAdapter.notifyItemRangeChanged(updatedPosition, bookmarkList.size)
             }
         }
     }

@@ -85,6 +85,7 @@ class TripsFragment : BaseFragment<FragmentTripsBinding>(R.layout.fragment_trips
                 if (processCheck == "DELETE") {
                     tripsList.removeAt(updatedPosition)
                     tripsAdapter.notifyItemRemoved(updatedPosition)
+                    tripsAdapter.notifyItemRangeChanged(updatedPosition, tripsList.size)
                 }
             }
         }
