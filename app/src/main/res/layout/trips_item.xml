@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="tripsBinding"
             type="com.seymen.seymentravel.domain.model.TravelModelItem" />

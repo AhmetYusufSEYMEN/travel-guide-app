@@ -9,64 +9,32 @@ import javax.inject.Inject
 class ITravelInfoRepositoryImpl @Inject constructor(private val apiService: ApiService) :
     ITravelInfoRepository {
 
-    override suspend fun getTravelInfo(): List<TravelModelItem> {
-        return apiService.getTravelInfo()
-    }
+    override suspend fun getTravelInfo(): List<TravelModelItem> = apiService.getTravelInfo()
 
-    override suspend fun getCategoryAllInfo(): List<TravelModelItem> {
-        return apiService.getCategoryAllInfo()
-    }
+    override suspend fun getCategoryAllInfo(): List<TravelModelItem> = apiService.getCategoryAllInfo()
 
-    override suspend fun getCategoryFlightInfo(): List<TravelModelItem> {
-        return apiService.getCategoryFlightInfo()
-    }
+    override suspend fun getCategoryFlightInfo(): List<TravelModelItem> = apiService.getCategoryFlightInfo()
 
-    override suspend fun getCategoryHoteltInfo(): List<TravelModelItem> {
-        return apiService.getCategoryHotelInfo()
-    }
+    override suspend fun getCategoryHoteltInfo(): List<TravelModelItem> = apiService.getCategoryHotelInfo()
 
-    override suspend fun getCategoryTransportationInfo(): List<TravelModelItem> {
-        return apiService.getCategoryTransportationInfo()
-    }
+    override suspend fun getCategoryTransportationInfo(): List<TravelModelItem> = apiService.getCategoryTransportationInfo()
 
-    override suspend fun getTopDestinationInfo(): List<TravelModelItem> {
-        return apiService.getTopDestinationInfo()
-    }
+    override suspend fun getTopDestinationInfo(): List<TravelModelItem> = apiService.getTopDestinationInfo()
 
-    override suspend fun getNearbyInfo(): List<TravelModelItem> {
-        return apiService.getNearbyInfo()
-    }
+    override suspend fun getNearbyInfo(): List<TravelModelItem> = apiService.getNearbyInfo()
 
-    override suspend fun getMightNeedInfo(): List<TravelModelItem> {
-        return apiService.getMightNeedInfo()
-    }
+    override suspend fun getMightNeedInfo(): List<TravelModelItem> = apiService.getMightNeedInfo()
 
-    override suspend fun getTopPickInfo(): List<TravelModelItem> {
-        return apiService.getTopPickInfo()
-    }
+    override suspend fun getTopPickInfo(): List<TravelModelItem> = apiService.getTopPickInfo()
 
-    override suspend fun getBookmarkTrueInfo(): List<TravelModelItem> {
-        return apiService.getBookmarkTrueInfo()
-    }
+    override suspend fun getBookmarkTrueInfo(): List<TravelModelItem> = apiService.getBookmarkTrueInfo()
 
-    override suspend fun getTripTrueInfo(): List<TravelModelItem> {
-        return apiService.getTripTrueInfo()
-    }
+    override suspend fun getTripTrueInfo(): List<TravelModelItem> = apiService.getTripTrueInfo()
 
+    override suspend fun getTravelInfoDetailsById(detailId: String): TravelModelItem = apiService.getTravelDetailsById(detailId)
 
-    override suspend fun getTravelInfoDetailsById(detailId: String): TravelModelItem {
-        return apiService.getTravelDetailsById(detailId)
-    }
+    override suspend fun updateTravelInfo(isBookmarkPost: TravelModelItem, id: String): TravelModelItem = apiService.updateTravelInfo(isBookmarkPost, id)
 
-    override suspend fun updateTravelInfo(
-        isBookmarkPost: TravelModelItem,
-        id: String
-    ): TravelModelItem {
-        return apiService.updateTravelInfo(isBookmarkPost, id)
-    }
-
-    override suspend fun getGuideInfo(): List<GuideModelItem> {
-        return apiService.getGuideInfo()
-    }
+    override suspend fun getGuideInfo(): List<GuideModelItem> = apiService.getGuideInfo()
 
 }
