@@ -1,5 +1,6 @@
 package com.seymen.seymentravel.presentation.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,19 +18,19 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _allDataInfo = MutableLiveData<List<TravelModelItem>>()
-    val allDataInfo: MutableLiveData<List<TravelModelItem>> = _allDataInfo
+    val allDataInfo: LiveData<List<TravelModelItem>> = _allDataInfo
 
     private val _mightNeedInfo = MutableLiveData<List<TravelModelItem>>()
-    val mightNeedInfo: MutableLiveData<List<TravelModelItem>> = _mightNeedInfo
+    val mightNeedInfo: LiveData<List<TravelModelItem>> = _mightNeedInfo
 
     private val _topDestInfo = MutableLiveData<List<TravelModelItem>>()
-    val topDestInfo: MutableLiveData<List<TravelModelItem>> = _topDestInfo
+    val topDestInfo: LiveData<List<TravelModelItem>> = _topDestInfo
 
     private val _nearByInfo = MutableLiveData<List<TravelModelItem>>()
-    val nearByInfo: MutableLiveData<List<TravelModelItem>> = _nearByInfo
+    val nearByInfo: LiveData<List<TravelModelItem>> = _nearByInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: LiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()

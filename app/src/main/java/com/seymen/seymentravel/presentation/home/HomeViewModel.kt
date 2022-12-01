@@ -1,5 +1,6 @@
 package com.seymen.seymentravel.presentation.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,7 +24,7 @@ class HomeViewModel @Inject constructor(
     val travelInfo: MutableLiveData<List<TravelModelItem>> = _travelInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: LiveData<TravelModelItem> = _itemUpdated
 
     val loadingState = MutableLiveData<Boolean>()
     val isUpdateSuccess = MutableLiveData<Boolean>()

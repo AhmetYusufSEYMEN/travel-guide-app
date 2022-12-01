@@ -1,5 +1,6 @@
 package com.seymen.seymentravel.presentation.guide
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,16 +19,16 @@ class GuideViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _topPickInfo = MutableLiveData<List<TravelModelItem>>()
-    val topPickInfo: MutableLiveData<List<TravelModelItem>> = _topPickInfo
+    val topPickInfo: LiveData<List<TravelModelItem>> = _topPickInfo
 
     private val _mightNeedInfo = MutableLiveData<List<TravelModelItem>>()
-    val mightNeedInfo: MutableLiveData<List<TravelModelItem>> = _mightNeedInfo
+    val mightNeedInfo: LiveData<List<TravelModelItem>> = _mightNeedInfo
 
     private val _itemUpdated = MutableLiveData<TravelModelItem>()
-    val itemUpdated: MutableLiveData<TravelModelItem> = _itemUpdated
+    val itemUpdated: LiveData<TravelModelItem> = _itemUpdated
 
     private val _guideInfo = MutableLiveData<List<GuideModelItem>>()
-    val guideInfo: MutableLiveData<List<GuideModelItem>> = _guideInfo
+    val guideInfo: LiveData<List<GuideModelItem>> = _guideInfo
 
 
     val loadingState = MutableLiveData<Boolean>()
